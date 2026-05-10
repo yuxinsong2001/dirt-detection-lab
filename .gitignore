@@ -205,3 +205,35 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# --- 编辑器与系统临时文件 ---
+__pycache__/
+.vscode/
+*.pyc
+.DS_Store
+
+# --- 核心数据集 (最重要！) ---
+# 绝不要上传 9248 张图片到 GitHub
+data/
+datasets/
+*.zip
+*.tar
+*.gz
+
+# --- 模型权重文件 ---
+# 忽略官方下载的 yolov3.pt 和你自己练出来的 best.pt
+*.pt
+*.pth
+weights/
+
+# --- 训练结果与日志 ---
+# 忽略训练产生的 runs/exp1, runs/exp2 等
+runs/
+wandb/
+comet/
+*.log
+
+# --- 虚拟环境 ---
+venv/
+env/
+.conda/

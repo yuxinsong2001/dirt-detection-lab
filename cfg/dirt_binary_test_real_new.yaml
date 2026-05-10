@@ -1,0 +1,10 @@
+path: D:/DirtNet_Project/data
+
+train: images/train
+val: images/val
+test: images/test_real_new
+
+nc: 2
+names:
+  0: dirt
+  1: object

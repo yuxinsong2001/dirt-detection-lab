@@ -1,0 +1,7 @@
+# 这里的路径一定要改成你电脑上 images 文件夹的真实位置
+path: D:/DirtNet_Project/data
+train: D:/DirtNet_Project/data/images/train
+val: D:/DirtNet_Project/data/images/val
+
+nc: 2
+names: ['dirt', 'object']
