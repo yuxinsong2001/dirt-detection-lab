@@ -10,7 +10,10 @@ from packaging.version import parse
 
 from utils.general import LOGGER, colorstr, cv2
 from utils.loggers.clearml.clearml_utils import ClearmlLogger
-from utils.loggers.wandb.wandb_utils import WandbLogger
+try:
+    from utils.loggers.wandb.wandb_utils import WandbLogger
+except ImportError:
+    WandbLogger = None
 from utils.plots import plot_images, plot_labels, plot_results
 from utils.torch_utils import de_parallel
 
@@ -60,6 +63,7 @@ try:
         comet_ml = None
 except (ImportError, AssertionError):
     comet_ml = None
+    CometLogger = None
 
 
 class Loggers:
@@ -108,7 +112,7 @@ class Loggers:
             self.tb = SummaryWriter(str(s))
 
         # W&B
-        if wandb and "wandb" in self.include:
+        if wandb and WandbLogger and "wandb" in self.include:
             self.opt.hyp = self.hyp  # add hyperparameters
             self.wandb = WandbLogger(self.opt)
         else:
@@ -130,7 +134,7 @@ class Loggers:
             self.clearml = None
 
         # Comet
-        if comet_ml and "comet" in self.include:
+        if comet_ml and CometLogger and "comet" in self.include:
             if isinstance(self.opt.resume, str) and self.opt.resume.startswith("comet://"):
                 run_id = self.opt.resume.split("/")[-1]
                 self.comet_logger = CometLogger(self.opt, self.hyp, run_id=run_id)

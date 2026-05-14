@@ -1,4 +1,4 @@
-path: D:/DirtNet_Project/data
+path: ../data
 
 train: images/train
 val: images/val

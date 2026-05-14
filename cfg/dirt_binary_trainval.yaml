@@ -1,6 +1,7 @@
-path: .
-train: ../data/images/train
-val: ../data/images/val
+path: ../data
+
+train: images/train
+val: images/val
 
 nc: 2
 names:
