@@ -214,8 +214,8 @@ __pycache__/
 
 # --- 核心数据集 (最重要！) ---
 # 绝不要上传 9248 张图片到 GitHub
-data/
-datasets/
+/data/
+/datasets/
 *.zip
 *.tar
 *.gz
@@ -228,9 +228,12 @@ weights/
 
 # --- 训练结果与日志 ---
 # 忽略训练产生的 runs/exp1, runs/exp2 等
-runs/
-wandb/
-comet/
+/runs/
+yolov3-master/runs/
+/wandb/
+yolov3-master/wandb/
+/comet/
+yolov3-master/comet/
 *.log
 
 # --- 虚拟环境 ---

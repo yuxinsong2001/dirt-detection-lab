@@ -81,11 +81,7 @@ from utils.general import (
     yaml_save,
 )
 from utils.loggers import Loggers
-try:
-    from utils.loggers.comet.comet_utils import check_comet_resume
-except ImportError:
-    def check_comet_resume(opt):
-        return False
+from utils.loggers.comet.comet_utils import check_comet_resume
 from utils.loss import ComputeLoss
 from utils.metrics import fitness
 from utils.plots import plot_evolve
