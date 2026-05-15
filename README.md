@@ -1,6 +1,101 @@
 # 2026_p02_dirt_detection
 Students: Shufang Tao (3824652), Yuxin Song (3820779), Yuyang Ren (3762594)
 
+# 🚀 DirtNet: Visual Dirt Detection Project
+
+This project is implemented based on the **YOLOv3** framework. It focuses on automatic detection and classification of **dirt** and common **office objects** on floors in office environments. The project is inspired by the core architecture of the ICRA 2020 paper *DirtNet: Visual Dirt Detection for Autonomous Cleaning Robots*.
+
+## 📋 Environment
+
+To ensure the experiment is reproducible, please run all commands in **Anaconda Prompt** or **Miniconda Prompt**.
+
+- **Operating System**: Windows 10/11
+- **Python**: 3.8.20
+- **Deep Learning Framework**:
+  - `torch == 2.4.1` with CUDA 13.0 hardware acceleration support
+  - `torchvision == 0.19`
+- **Main Dependencies**: See `requirements.txt` in this repository.
+
+## 🛠️ Quick Start
+
+### 1. Create and activate the environment
+
+```dos
+conda create -n dirtnet python=3.8.20 -y
+conda activate dirtnet
+pip install -r requirements.txt
+```
+
+### 2. ⚠️ Critical Windows Fix
+
+Before running any script in Anaconda Prompt, execute the following command to resolve the OpenMP library conflict. Otherwise, the program may exit immediately.
+
+```dos
+set KMP_DUPLICATE_LIB_OK=TRUE
+```
+
+### 3. Dataset Setup
+
+Please make sure the dataset is stored in the following structure so that `dirt.yaml` can resolve the paths correctly:
+
+```text
+D:\DIRTNET_PROJECT\
+├── data\               <-- Contains images/ and labels/ subfolders
+└── yolov3-master\      <-- Contains training code and configuration files
+```
+
+## 🏋️ Training
+
+This experiment uses a **1024x832** rectangular training strategy, which improves accuracy while reducing computational cost by about **19%** in FLOPs.
+
+```dos
+python train.py --img 1024 --batch 2 --epochs 15 --data dirt.yaml --weights yolov3.pt
+```
+
+*Note: The model is trained for 15 epochs. The best weights are usually produced between epoch 10 and epoch 15.*
+
+## 📊 Latest Results
+
+According to the latest training record (`exp3`), the model achieved the following performance on the validation set:
+
+| Class | Images | Precision (P) | Recall (R) | mAP@0.5 |
+| :--- | :--- | :--- | :--- | :--- |
+| **Overall** | 296 | 0.929 | 0.909 | **93.6%** |
+| **Dirt** | 296 | 0.908 | 0.855 | 89.5% |
+| **Object** | 296 | 0.949 | 0.963 | 97.6% |
+
+- **Best weight file**: `runs/train/exp3/weights/best.pt`
+- **Total training time**: about 0.6 hours
+
+## 📁 Directory Structure
+
+```text
+DIRTNET_PROJECT/
+├── data/               # Dataset (images and labels)
+│   ├── images/         # Includes train (860+), val (296), test_real (80)
+│   └── labels/         # Corresponding .txt annotation files
+└── yolov3-master/      # Main code directory
+    ├── dirt.yaml       # Configuration file; verify path references before training
+    └── runs/train/exp3 # Training outputs, including PR curves, confusion matrices, and weights
+```
+
+## 🤝 Collaboration Notes
+
+1. **Real-world data validation**: Run the following command to test `best.pt` on the 80 real-world photos in `test_real_new`:
+   ```dos
+   python detect.py --weights runs/train/exp3/weights/best.pt --img 1024 --source ../data/images/test_real_new
+   ```
+2. **Reading model weights**: `best.pt` is a binary file and cannot be previewed directly. It must be loaded through code.
+3. **Avoid Git bloat**: `.gitignore` is configured to ignore the `data/` directory and large weight files. Do not manually add large dataset files or model weights.
+4. **GPU memory optimization**: If you encounter `CUDA out of memory`, try changing `--batch 2` to `--batch 1`.
+
+---
+
+*This project is developed based on the Ultralytics YOLOv3 community version.*
+
+---
+
+# 中文版本
 
 # 🚀 DirtNet: Visual Dirt Detection Project
 
