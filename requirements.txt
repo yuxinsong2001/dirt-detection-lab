@@ -5,3 +5,5 @@ opencv-python
 pyyaml
 matplotlib
 tqdm
+pandas
+seaborn
