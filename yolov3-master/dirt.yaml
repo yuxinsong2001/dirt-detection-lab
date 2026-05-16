@@ -1,7 +1,11 @@
-# 这里的路径一定要改成你电脑上 images 文件夹的真实位置
-path: D:/DirtNet_Project/data
-train: D:/DirtNet_Project/data/images/train
-val: D:/DirtNet_Project/data/images/val
+# Dataset root, relative to yolov3-master when running train.py/val.py.
+path: ../data
+
+train: images/train
+val: images/val
+test: images/test_real_new
 
 nc: 2
-names: ['dirt', 'object']
+names:
+  0: dirt
+  1: object
