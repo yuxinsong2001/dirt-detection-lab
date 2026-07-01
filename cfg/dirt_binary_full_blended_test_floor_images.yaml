@@ -1,0 +1,10 @@
+path: "../datasets/binary/full"
+
+train: images/train
+val: images/val
+test: images/blended_test_floor_images
+
+nc: 2
+names:
+  0: dirt
+  1: object
