@@ -20,6 +20,7 @@ datasets/binary/full/*
 *.onnx
 *.engine
 runs/**/weights/
+runs/**/*.jpg
 
 *.zip
 *.tar
