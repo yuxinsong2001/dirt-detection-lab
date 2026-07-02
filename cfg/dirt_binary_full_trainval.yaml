@@ -1,0 +1,9 @@
+path: "../datasets/binary/full"
+
+train: images/train
+val: images/val
+
+nc: 2
+names:
+  0: dirt
+  1: object

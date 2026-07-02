@@ -1,4 +1,4 @@
-path: ../data
+path: ../datasets/binary/small
 
 train: images/train
 val: images/val
