@@ -1,5 +1,5 @@
 # YOLO11 multiclass training and validation dataset.
-path: datasets/multiclass/full
+path: datasets/multiclass/small
 
 train: images/train
 val: images/val

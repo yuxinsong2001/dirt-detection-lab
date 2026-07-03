@@ -1,6 +1,6 @@
-# Multiclass Dataset Layout
+# Multiclass Small Dataset Layout
 
-This directory documents the expected layout of the 10-class DirtNet dataset. The image and label files are intentionally excluded from Git because of their size.
+This directory documents the expected layout of the 10-class DirtNet small dataset. The image and label files are intentionally excluded from Git because of their size.
 
 The class mapping is:
 
@@ -20,7 +20,7 @@ The class mapping is:
 Expected local structure:
 
 ```text
-datasets/multiclass/full/
+datasets/multiclass/small/
   images/
     train/
     val/

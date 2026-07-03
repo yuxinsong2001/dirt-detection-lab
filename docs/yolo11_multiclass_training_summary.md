@@ -35,7 +35,7 @@ The model predicts the following classes:
 
 The training labels are imbalanced. The `dirt` class contains 5,161 instances, while `scissors` contains 114 instances and both `rulers` and `tapes` contain 162 instances.
 
-Dataset configuration: [`multiclass_full.yaml`](../multiclass_full.yaml)
+Dataset configuration: [`multiclass_small.yaml`](../multiclass_small.yaml)
 
 ## Training Setup
 
