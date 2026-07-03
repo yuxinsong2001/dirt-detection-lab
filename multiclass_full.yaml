@@ -1,0 +1,18 @@
+path: datasets/multiclass/full
+
+train: images/train
+val: images/val
+test: images/test_real_new
+
+nc: 10
+names:
+  0: dirt
+  1: business_cards
+  2: keys
+  3: other
+  4: paper_and_notebooks
+  5: pens
+  6: rulers
+  7: scissors
+  8: tapes
+  9: usb_sticks
