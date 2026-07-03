@@ -130,3 +130,5 @@ The 80 test images must not be reused for training or parameter selection. If th
 ## Conclusion
 
 The model is a valid first multiclass real-scene baseline, but it is not yet equally reliable across all classes. The dominant problem is the synthetic-to-real domain gap rather than insufficient convergence on synthetic data.
+
+A follow-up [fine-tuning experiment](yolo11_multiclass_finetuning_analysis.md) improved every synthetic validation metric but did not improve overall real-test performance. That result supports retaining this first model as the recommended multiclass baseline.
