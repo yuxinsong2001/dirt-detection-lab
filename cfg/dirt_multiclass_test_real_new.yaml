@@ -1,5 +1,5 @@
 # YOLO11 multiclass dataset including the held-out real-image test split.
-path: datasets/multiclass/full
+path: datasets/multiclass/small
 
 train: images/train
 val: images/val

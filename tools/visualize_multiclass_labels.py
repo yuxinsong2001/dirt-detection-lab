@@ -4,7 +4,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 
 ROOT = Path(__file__).resolve().parents[1]
-DATASET = ROOT / "datasets" / "multiclass" / "full"
+DATASET = ROOT / "datasets" / "multiclass" / "small"
 OUTPUT = ROOT / "outputs" / "multiclass_label_qa"
 NAMES = [
     "dirt",

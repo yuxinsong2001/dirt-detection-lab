@@ -17,9 +17,9 @@ datasets/binary/full/*
 
 !datasets/multiclass/
 datasets/multiclass/*
-!datasets/multiclass/full/
-datasets/multiclass/full/*
-!datasets/multiclass/full/README.md
+!datasets/multiclass/small/
+datasets/multiclass/small/*
+!datasets/multiclass/small/README.md
 
 *.pt
 *.pth
