@@ -1,4 +1,4 @@
-# Binary-to-Multi-class Architecture Validation
+﻿# Binary-to-Multi-class Architecture Validation
 
 ## 1. Purpose
 
@@ -18,8 +18,8 @@ This experiment is used as a bridge between:
 
 ```text
 binary architecture screening
-→ multi-class architecture validation
-→ final model selection
+-> multi-class architecture validation
+-> final model selection
 ```
 
 ---
@@ -41,23 +41,25 @@ Therefore, binary results cannot be directly treated as final evidence for the m
 Based on the previous binary architecture comparison, the selected candidate models for multi-class validation were:
 
 - YOLOv3u
-- YOLOv8l
-- YOLO11l
+- YOLOv5LU
+- YOLOv8L
+- YOLO11L
 
 These models were chosen because they represented the strongest or most relevant candidates from the binary-stage comparison.
 
-The purpose was to re-evaluate these candidates under the actual 10-class multi-class detection setting.
+The purpose was to re-evaluate these candidates under the actual 10-class multi-class detection setting and check whether the binary-stage ranking could still support the multi-class model selection.
 
 ---
 
 ## 4. Practical Limitation
 
-The original plan was to validate all three selected models:
+The original plan was to validate all selected candidates:
 
 ```text
 YOLOv3u
-YOLOv8l
-YOLO11l
+YOLOv5LU
+YOLOv8L
+YOLO11L
 ```
 
 However, due to hardware limitations, YOLOv3u could not be completed under the available local training environment. The YOLOv3u experiment required more GPU memory than available on the current laptop GPU setup, so it was not included in the final numerical comparison.
@@ -65,8 +67,9 @@ However, due to hardware limitations, YOLOv3u could not be completed under the a
 Therefore, the completed multi-class validation comparison includes:
 
 ```text
-YOLOv8l
-YOLO11l
+YOLOv5LU
+YOLOv8L
+YOLO11L
 ```
 
 This limitation should be clearly mentioned in the report to avoid giving the impression that YOLOv3u was intentionally excluded.
@@ -106,64 +109,96 @@ Typical aligned setting:
 | Batch size | 2 |
 | Main selection metric | validation mAP50-95 |
 
+Important fixed settings:
+
+```text
+imgsz=1024
+batch=2
+epochs=30
+optimizer=SGD
+lr0=0.01
+lrf=0.01
+mosaic=1.0
+mixup=0.0
+erasing=0.0
+auto_augment=none
+amp=False
+```
+
 The main metric is **validation mAP50-95**, because it evaluates detection and localization performance across multiple IoU thresholds and is therefore more strict than mAP50 alone.
 
 ---
 
 ## 6. Completed Model Comparison
 
-### 6.1 YOLOv8l_e30_sgd_aligned
+### 6.1 YOLOv5LU
 
-| Model | Best Epoch | Precision | Recall | mAP50 | mAP50-95 |
-|---|---:|---:|---:|---:|---:|
-| YOLOv8l_e30_sgd_aligned | 29 | 0.97198 | 0.92776 | 0.96152 | 0.82417 |
+| Model | Best Epoch | Precision | Recall | mAP50 | mAP50-95 | Training Time |
+|---|---:|---:|---:|---:|---:|---:|
+| YOLOv5LU | 30 | 0.96439 | 0.93563 | 0.96360 | 0.82001 | 132.0 min |
 
 Observation:
 
-YOLOv8l achieved strong precision and stable multi-class detection performance. It produced the highest precision among the completed comparison models, indicating fewer false positive detections.
+YOLOv5LU achieved strong multi-class detection performance and was close to the other large-scale candidates. However, its mAP50-95 was lower than YOLOv8L and YOLO11L, and its training time was the longest among the completed models.
 
 ---
 
-### 6.2 YOLO11l_e30_sgd_aligned
+### 6.2 YOLOv8L
 
-| Model | Best Epoch | Precision | Recall | mAP50 | mAP50-95 |
-|---|---:|---:|---:|---:|---:|
-| YOLO11l_e30_sgd_aligned | 29 | 0.96432 | 0.93674 | 0.96715 | 0.83170 |
+| Model | Best Epoch | Precision | Recall | mAP50 | mAP50-95 | Training Time |
+|---|---:|---:|---:|---:|---:|---:|
+| YOLOv8L | 29 | 0.97198 | 0.92776 | 0.96152 | 0.82417 | 97.4 min |
 
 Observation:
 
-YOLO11l achieved higher recall, mAP50, and mAP50-95 than YOLOv8l. Although its precision was slightly lower, its overall detection performance was better according to the main selection metric.
+YOLOv8L achieved the highest precision among the completed comparison models, indicating fewer false positive detections. However, its recall, mAP50, and mAP50-95 were lower than YOLO11L.
+
+---
+
+### 6.3 YOLO11L
+
+| Model | Best Epoch | Precision | Recall | mAP50 | mAP50-95 | Training Time |
+|---|---:|---:|---:|---:|---:|---:|
+| YOLO11L | 29 | 0.96432 | 0.93674 | 0.96715 | 0.83170 | 91.5 min |
+
+Observation:
+
+YOLO11L achieved the highest recall, mAP50, and mAP50-95 among the completed candidates. It also had the shortest training time in this comparison. Although its precision was slightly lower than YOLOv8L, it showed the best overall balance across the key multi-class validation metrics.
 
 ---
 
 ## 7. Result Summary
 
-| Model | Best Epoch | Optimizer | Precision | Recall | mAP50 | mAP50-95 | Status |
-|---|---:|---|---:|---:|---:|---:|---|
-| YOLOv3u_e30_sgd_aligned | - | SGD | - | - | - | - | Not completed due to GPU memory limitation |
-| YOLOv8l_e30_sgd_aligned | 29 | SGD | 0.97198 | 0.92776 | 0.96152 | 0.82417 | Completed |
-| YOLO11l_e30_sgd_aligned | 29 | SGD | 0.96432 | 0.93674 | 0.96715 | 0.83170 | Completed |
+| Model | Best Epoch | Optimizer | Precision | Recall | mAP50 | mAP50-95 | Training Time | Status |
+|---|---:|---|---:|---:|---:|---:|---:|---|
+| YOLOv3u_e30_sgd_aligned | - | SGD | - | - | - | - | - | Not completed due to GPU memory limitation |
+| YOLOv5LU | 30 | SGD | 0.96439 | 0.93563 | 0.96360 | 0.82001 | 132.0 min | Completed |
+| YOLOv8L | 29 | SGD | 0.97198 | 0.92776 | 0.96152 | 0.82417 | 97.4 min | Completed |
+| YOLO11L | 29 | SGD | 0.96432 | 0.93674 | 0.96715 | 0.83170 | 91.5 min | Completed |
 
 ---
 
-## 8. Difference Between YOLO11l and YOLOv8l
+## 8. Comparison Against YOLO11L
 
-The following table shows the difference between YOLO11l and YOLOv8l:
+The following table shows the difference between YOLO11L and the other completed candidates:
 
 ```text
-Difference = YOLO11l - YOLOv8l
+Difference = YOLO11L - compared model
 ```
 
-| Metric | Difference | Interpretation |
-|---|---:|---|
-| Precision | -0.00766 | YOLOv8l has slightly fewer false positives |
-| Recall | +0.00898 | YOLO11l detects more true objects |
-| mAP50 | +0.00563 | YOLO11l performs slightly better at IoU = 0.5 |
-| mAP50-95 | +0.00753 | YOLO11l has better overall detection and localization quality |
+| Compared Model | Precision | Recall | mAP50 | mAP50-95 | Training Time | Interpretation |
+|---|---:|---:|---:|---:|---:|---|
+| YOLOv5LU | -0.00007 | +0.00111 | +0.00355 | +0.01169 | -40.5 min | YOLO11L is slightly better in recall and mAP, and much faster |
+| YOLOv8L | -0.00766 | +0.00898 | +0.00563 | +0.00753 | -5.9 min | YOLOv8L has higher precision, but YOLO11L is better in recall, mAP, and time |
 
-The result shows that YOLOv8l is slightly better in precision, but YOLO11l is better in recall, mAP50, and mAP50-95.
+The result shows that YOLO11L is not dramatically ahead in every single metric, but it is the most consistent candidate across the key selection factors:
 
-Since the main selection criterion is validation mAP50-95, YOLO11l is selected as the better multi-class baseline model among the completed candidates.
+- highest recall
+- highest mAP50
+- highest mAP50-95
+- shortest training time among the completed candidates
+
+Since the main selection criterion is validation mAP50-95, and since training cost is also relevant for the project, YOLO11L is selected as the better multi-class baseline model among the completed candidates.
 
 ---
 
@@ -175,13 +210,15 @@ Binary detection is simpler because it does not require distinguishing between d
 
 Therefore, the selected binary-stage models need to be re-tested on the multi-class task.
 
-In the completed validation, YOLO11l achieved the highest validation mAP50-95. This suggests that the strong performance of YOLO11l in the binary stage can also transfer well to the multi-class task. However, the difference between YOLO11l and YOLOv8l is relatively small, so the conclusion should be stated as:
+In the completed validation, YOLO11L achieved the highest validation mAP50-95. YOLOv8L achieved the highest precision, and YOLOv5LU also produced competitive results. However, YOLO11L showed the best overall balance because it had the highest recall, mAP50, mAP50-95, and the shortest training time.
+
+The conclusion should therefore be stated as:
 
 ```text
-YOLO11l performed slightly better than YOLOv8l under the completed aligned multi-class validation setting.
+YOLO11L showed the best overall balance among the completed aligned multi-class validation candidates.
 ```
 
-rather than claiming an absolute advantage in all scenarios.
+rather than claiming an absolute advantage in every possible scenario.
 
 ---
 
@@ -191,15 +228,16 @@ The main conclusions are:
 
 1. Binary detection results should not be directly used as the final multi-class model selection result.
 2. The best binary-stage architectures should be validated again on the multi-class task.
-3. YOLOv8l and YOLO11l were successfully compared under the multi-class setting.
+3. YOLOv5LU, YOLOv8L, and YOLO11L were successfully compared under the multi-class setting.
 4. YOLOv3u could not be completed due to local GPU memory limitations.
-5. Among the completed validation experiments, YOLO11l achieved the highest validation mAP50-95.
-6. Therefore, YOLO11l is selected as the better multi-class baseline model among the completed candidates.
+5. YOLO11L achieved the highest validation mAP50-95 among the completed candidates.
+6. YOLO11L also achieved the highest recall, highest mAP50, and shortest training time.
+7. Therefore, YOLO11L is selected as the most suitable multi-class baseline model among the completed candidates.
 
 Final conclusion:
 
 ```text
-YOLO11l_e30_sgd_aligned achieved the best validation mAP50-95 among the completed binary-to-multi-class validation candidates and is therefore selected as the current best multi-class baseline model.
+YOLO11L achieved the best overall balance among the completed binary-to-multi-class validation candidates and is therefore selected as the current multi-class baseline model for further optimization.
 ```
 
 ---
@@ -211,9 +249,9 @@ The following paragraph can be used in the final report or presentation:
 ```text
 After the binary detection stage, the top candidate architectures were selected for further validation on the 10-class multi-class detection task. This step was necessary because binary detection and multi-class detection have different task definitions. A model that performs well in binary detection does not automatically guarantee the best performance in the multi-class setting.
 
-The selected candidates were YOLOv3u, YOLOv8l, and YOLO11l. Due to local GPU memory limitations, the YOLOv3u experiment could not be completed. Therefore, the final numerical comparison was conducted between YOLOv8l_e30_sgd_aligned and YOLO11l_e30_sgd_aligned.
+The selected candidates were YOLOv3u, YOLOv5LU, YOLOv8L, and YOLO11L. Due to local GPU memory limitations, the YOLOv3u experiment could not be completed. Therefore, the final numerical comparison was conducted among YOLOv5LU, YOLOv8L, and YOLO11L under aligned multi-class settings.
 
-YOLOv8l achieved a best validation mAP50-95 of 0.82417, while YOLO11l achieved a higher mAP50-95 of 0.83170. Although YOLOv8l had slightly higher precision, YOLO11l achieved better recall, mAP50, and mAP50-95. Since validation mAP50-95 is the main model selection criterion, YOLO11l was selected as the better multi-class baseline model among the completed candidates.
+YOLOv5LU achieved a best validation mAP50-95 of 0.82001, YOLOv8L achieved 0.82417, and YOLO11L achieved the highest mAP50-95 of 0.83170. YOLOv8L had the highest precision, but YOLO11L achieved the highest recall, mAP50, mAP50-95, and the shortest training time among the completed candidates. Therefore, YOLO11L was selected as the most suitable multi-class baseline model for further optimization.
 ```
 
 ---
