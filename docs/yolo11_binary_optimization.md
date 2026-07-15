@@ -63,12 +63,11 @@ After choosing YOLO11s for parameter screening, one test compared the normal SGD
 
 Other items in the command, such as `mosaic=1.0` and `mixup=0.0`, are already consistent with the default detection setting, so they are not treated as separate changes here.
 
-| Experiment | Precision | Recall | mAP50 | mAP50-95 | Time |
-|---|---:|---:|---:|---:|---:|
-| `yolo11s_full_sgd_e15_b8` | 0.963 | 0.923 | 0.959 | 0.844 | 2096.9s |
-| `yolo11s_full_sgd_aligned_aug_e15_b8` | 0.963 | 0.923 | 0.959 | 0.844 | 2067.6s |
-
-The result is essentially unchanged. This suggests that the tested augmentation changes are not the source of the improvement seen in later experiments.
+The changed augmentation settings produced the same metrics and generated plots as
+`yolo11s_full_sgd_e15_b8` (precision 0.963, recall 0.923, mAP50 0.959, and
+mAP50-95 0.844). The duplicate run is therefore not retained. This result suggests
+that the tested augmentation changes are not the source of the improvement seen in
+later experiments.
 
 Current decision:
 
@@ -81,7 +80,7 @@ During the augmentation comparison, an additional run disabled AMP. This was use
 
 | Experiment | AMP | Precision | Recall | mAP50 | mAP50-95 | Time |
 |---|---:|---:|---:|---:|---:|---:|
-| `yolo11s_full_sgd_aligned_aug_e15_b8` | true | 0.963 | 0.923 | 0.959 | 0.844 | 2067.6s |
+| `yolo11s_full_sgd_e15_b8` | true | 0.963 | 0.923 | 0.959 | 0.844 | 2096.9s |
 | `yolo11s_full_sgd_aligned_aug_amp_false_e15_b8` | false | 0.960 | 0.922 | 0.960 | 0.847 | 3278.8s |
 
 The run with `amp=False` takes much longer, while mAP50 stays almost unchanged. Its time cost moves YOLO11s closer to the cost level of a larger model, but it does not provide a comparable accuracy gain.

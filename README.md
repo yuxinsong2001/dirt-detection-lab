@@ -1,253 +1,241 @@
-# 2026_p02_dirt_detection
+# Vision-Based Dirt Detection for Cleaning Robots
 
-Students: Shufang Tao (3824652), Yuxin Song (3820779), Yuyang Ren (3762594)
+## Project Overview
 
-Language: [中文](#中文) | [English](#english)
+This course project reproduces and extends the vision-based floor dirt detection
+approach introduced by DirtNet. It compares multiple YOLO generations, selects
+Ultralytics YOLO11 for the final implementation, and studies model size, training
+settings, synthetic validation performance, and generalization to real images.
+The repository covers two object-detection tasks:
 
----
+- Binary detection: `dirt` and `object`
+- Multiclass extension: dirt and nine office-object classes
 
-## 中文
+The main experiments use YOLO11s and YOLO11m. Training data, test images, and model
+weights are not stored in Git because of their size. The repository keeps dataset
+layouts, configuration files, experiment metadata, metrics, and documentation so
+the experiments can be reproduced locally.
 
-# 🚀 DirtNet: Visual Dirt Detection Project
+## Team
 
-本项目基于 **YOLOv3** 框架实现，专注于办公环境地面上的 **污垢 (Dirt)** 与 **典型办公物体 (Object)** 的自动识别与分类。本项目参考了 ICRA 2020 论文 《DirtNet: Visual Dirt Detection for Autonomous Cleaning Robots》 的核心架构。
+| Name | Student ID |
+|---|---:|
+| Shufang Tao | 3824652 |
+| Yuxin Song | 3820779 |
+| Yuyang Ren | 3762594 |
 
-## 📋 环境要求 (Environment)
-
-为确保实验可复现，建议使用 **Anaconda Prompt** 或 **Miniconda Prompt** 运行。
-
-本项目已在以下 Windows 环境中成功运行：
-
-| 操作系统 | Python | PyTorch / CUDA |
-|---|---|---|
-| Windows | 3.8.20 | torch 2.4.1 / CUDA 13.0 |
-| Windows | 3.12.13 | torch 2.12.0 / CUDA 13.2 |
-
-主要依赖请参考仓库中的 `requirements.txt`。不同机器的 CUDA 和 PyTorch 版本可能略有差异，实际以能完成训练、验证和测试流程为准。
-
-## 🛠️ 快速上手 (Quick Start)
-
-### 1. 创建并激活环境
-
-可选择一个已验证的 Python 版本创建环境：
-
-```dos
-conda create -n dirtnet python=3.12 -y
-conda activate dirtnet
-pip install -r requirements.txt
-```
-
-### 2. Windows 可选修复 (Optional Fix)
-
-如果运行时出现 OpenMP / MKL duplicate library 相关报错，可执行：
-
-```dos
-set KMP_DUPLICATE_LIB_OK=TRUE
-```
-
-### 3. 数据集准备 (Dataset Setup)
-
-请确保数据集包含 `images/` 和 `labels/` 两部分，并与 `dirt.yaml` 中的路径保持一致：
+## Repository Layout
 
 ```text
-DIRTNET_PROJECT/
-├── data/
-│   ├── images/         <-- 存放训练、验证和测试图片
-│   └── labels/         <-- 存放对应的 YOLO 格式标注文件
-└── yolov3-master/      <-- 存放训练代码与配置文件
+.
+|-- binary_full.yaml                 # Binary dataset configuration
+|-- multiclass_small.yaml            # Ten-class dataset configuration
+|-- dataset_convert_to_yolo_binary.py
+|-- datasets/                         # Local datasets; only layout READMEs are tracked
+|-- docs/                             # Experiment process and analysis
+|-- runs/                             # Tracked metrics and plots; weights are ignored
+|-- tools/                            # Dataset visualization utilities
+|-- weights/                          # Pretrained and trained .pt files; ignored by Git
+`-- requirements.txt
 ```
 
-## 🏋️ 训练指令 (Training)
-
-本实验采用 **1024x832** 矩形训练方案：
-
-```dos
-python train.py --img 1024 --batch 2 --epochs 15 --data dirt.yaml --weights yolov3.pt
-```
-
-主要参数说明：
-
-| 参数 | 含义 | 当前设置 |
-| :--- | :--- | :--- |
-| `--img` | 输入图像尺寸 | `1024` |
-| `--batch` | 每次训练输入的图片数量 | `2` |
-| `--epochs` | 训练轮数 | `15` |
-| `--data` | 数据集配置文件 | `dirt.yaml` |
-| `--weights` | 初始权重文件 | `yolov3.pt` |
-
-*注：根据原论文，该训练方案在提升精度的同时可节省约 **19%** 的计算量 (FLOPs)；训练 15 轮后通常可得到最佳权重。*
-
-## 📊 实验成果总结 (Latest Results)
-
-根据最近一次训练记录（exp3），模型在验证集上表现如下：
-
-| 类别 (Class) | 图像数 (Images) | 精准率 (P) | 召回率 (R) | mAP@0.5 |
-| :--- | :--- | :--- | :--- | :--- |
-| **整体 (Overall)** | 296 | 0.929 | 0.909 | **93.6%** |
-| **Dirt (污垢)** | 296 | 0.908 | 0.855 | 89.5% |
-| **Object (物体)** | 296 | 0.949 | 0.963 | 97.6% |
-
-- **最佳权重存储**: `runs/train/exp3/weights/best.pt`
-- **训练总时长**: 约 0.6 小时
-
-## 📐 Evaluation Metrics
-
-本项目主要使用以下指标评估检测效果：
-
-| 指标 | 含义 |
-| :--- | :--- |
-| Precision | 预测为目标的框中，有多少是真正正确的 |
-| Recall | 真实目标中，有多少被模型成功检测到 |
-| F1 | Precision 和 Recall 的综合指标 |
-| mAP@0.5 | IoU 阈值为 0.5 时的平均检测精度 |
-
-除定量指标外，也会结合成功检测、漏检、误检和类别混淆案例进行定性分析。
-
-## 📁 目录结构参考
-
-```text
-DIRTNET_PROJECT/
-├── data/               # 数据集 (Images & Labels)
-│   ├── images/         # 包含 train (860+), val (296), test_real (80)
-│   └── labels/         # 对应图片的 YOLO 格式 .txt 标注文件
-└── yolov3-master/      # 代码主目录
-    ├── dirt.yaml       # 数据集配置文件
-    └── runs/train/     # 训练产物 (PR曲线、混淆矩阵、权重文件)
-```
-
-## 🤝 队友协作注意事项
-
-1. **真实数据验证**: 请运行以下命令，使用 `best.pt` 测试 `test_real_new` 中的真实照片：
-   ```dos
-   python detect.py --weights runs/train/dirt_binary_train/weights/best.pt --img 1024 --source ../data/images/test_real_new
-   ```
-2. **定量评估**: 如需在验证集或测试集上计算指标，请使用 `val.py`，并记录 precision、recall、mAP@0.5 和 F1 等结果。
-3. **读取权重**: `best.pt` 为二进制文件，无法直接打开预览，需通过代码加载。
-4. **防止 Git 冗余**: `.gitignore` 已配置忽略 `data/` 目录及大型权重文件，请勿手动 `git add` 大容量数据。
-5. **显存优化**: 若运行报错 `CUDA out of memory`，请尝试将 `--batch 2` 调整为 `1`。
-
----
-
-## English
-
-# DirtNet: Visual Dirt Detection Project
-
-This project is a YOLOv3-based reproduction of the ICRA 2020 paper **DirtNet: Visual Dirt Detection for Autonomous Cleaning Robots**. It focuses on detecting **dirt** and typical office **objects** on the floor.
+Run all commands below from the repository root.
 
 ## Environment
 
-To make the experiments reproducible, using **Anaconda Prompt** or **Miniconda Prompt** is recommended.
+The experiments were run on Windows with Conda. The binary experiments used a
+desktop NVIDIA RTX 4070. The formal multiclass experiments used an NVIDIA RTX 3060
+Laptop GPU with 6 GB VRAM.
 
-The project has been successfully run on the following Windows environments:
-
-| OS | Python | PyTorch / CUDA |
-|---|---|---|
-| Windows | 3.8.20 | torch 2.4.1 / CUDA 13.0 |
-| Windows | 3.12.13 | torch 2.12.0 / CUDA 13.2 |
-
-Main dependencies are listed in `requirements.txt`. CUDA and PyTorch versions may vary across machines, as long as training, validation, and testing can run successfully.
-
-## Quick Start
-
-### 1. Create and Activate Environment
-
-Create an environment with one verified Python version:
-
-```dos
+```powershell
 conda create -n dirtnet python=3.12 -y
 conda activate dirtnet
 pip install -r requirements.txt
+yolo checks
 ```
 
-### 2. Optional Windows Fix
+The requirements file contains only the dependencies used directly by this
+repository. Ultralytics installs its runtime stack, including PyTorch and OpenCV.
+When a specific CUDA-enabled PyTorch build is required, install that build first
+for the local GPU and then run the requirements command above.
 
-If an OpenMP / MKL duplicate library error occurs, run:
+The recorded multiclass environment used Python 3.12.10, PyTorch 2.12.1+cu130,
+and Ultralytics 8.4.74. Exact PyTorch and CUDA builds may be adapted to the local
+GPU and driver.
 
-```dos
-set KMP_DUPLICATE_LIB_OK=TRUE
-```
+## Dataset Setup
 
-### 3. Dataset Setup
+### Binary Dataset
 
-Make sure the dataset contains both `images/` and `labels/`, and that their paths match `dirt.yaml`:
+The expected converted layout is documented in
+[`datasets/binary/full/README.md`](datasets/binary/full/README.md). The root-level
+[`binary_full.yaml`](binary_full.yaml) uses these splits:
 
 ```text
-DIRTNET_PROJECT/
-├── data/
-│   ├── images/         <-- training, validation, and test images
-│   └── labels/         <-- corresponding YOLO-format annotation files
-└── yolov3-master/      <-- training code and configuration files
+datasets/binary/full/
+|-- images/train
+|-- images/val
+|-- images/test_real_new
+|-- labels/train
+|-- labels/val
+`-- labels/test_real_new
 ```
 
-## Training
+To convert the original DirtNet-style source data into the binary YOLO format,
+place the source files under `datasets/images/` as described by the converter and
+run:
 
-This experiment uses a **1024x832** rectangular training setup:
-
-```dos
-python train.py --img 1024 --batch 2 --epochs 15 --data dirt.yaml --weights yolov3.pt
+```powershell
+python dataset_convert_to_yolo_binary.py --profile full
 ```
 
-Main parameters:
+Use `--clear` only when the existing converted output should be regenerated:
 
-| Parameter | Meaning | Current setting |
-| :--- | :--- | :--- |
-| `--img` | Input image size | `1024` |
-| `--batch` | Number of images per training batch | `2` |
-| `--epochs` | Number of training epochs | `15` |
-| `--data` | Dataset configuration file | `dirt.yaml` |
-| `--weights` | Initial weight file | `yolov3.pt` |
+```powershell
+python dataset_convert_to_yolo_binary.py --profile full --clear
+```
 
-*Note: According to the original paper, this training setup can improve accuracy while saving about **19%** FLOPs. The best weights are usually obtained after 15 epochs.*
+The converter maps dirt to class 0 and all office objects to class 1. Synthetic
+floor IDs 0-15 form the training split and IDs 16-20 form the validation split.
 
-## Latest Results
+### Multiclass Dataset
 
-According to the latest training record (`exp3`), the model performs as follows on the validation set:
-
-| Class | Images | Precision (P) | Recall (R) | mAP@0.5 |
-| :--- | :--- | :--- | :--- | :--- |
-| **Overall** | 296 | 0.929 | 0.909 | **93.6%** |
-| **Dirt** | 296 | 0.908 | 0.855 | 89.5% |
-| **Object** | 296 | 0.949 | 0.963 | 97.6% |
-
-- **Best weights**: `runs/train/exp3/weights/best.pt`
-- **Training time**: about 0.6 hours
-
-## Evaluation Metrics
-
-This project mainly uses the following metrics:
-
-| Metric | Meaning |
-| :--- | :--- |
-| Precision | How many predicted boxes are correct |
-| Recall | How many ground-truth targets are detected |
-| F1 | Combined score of precision and recall |
-| mAP@0.5 | Mean average precision at IoU threshold 0.5 |
-
-In addition to quantitative metrics, qualitative analysis includes successful detections, missed detections, false positives, and class confusion cases.
-
-## Repository Structure
+The ten-class layout is documented in
+[`datasets/multiclass/small/README.md`](datasets/multiclass/small/README.md). Its
+configuration is [`multiclass_small.yaml`](multiclass_small.yaml), with the
+following classes:
 
 ```text
-DIRTNET_PROJECT/
-├── data/               # Dataset (Images & Labels)
-│   ├── images/         # includes train (860+), val (296), test_real (80)
-│   └── labels/         # corresponding YOLO-format .txt annotation files
-└── yolov3-master/      # code directory
-    ├── dirt.yaml       # dataset configuration file
-    └── runs/train/     # training outputs (curves, confusion matrix, weights)
+dirt, business_cards, keys, other, paper_and_notebooks,
+pens, rulers, scissors, tapes, usb_sticks
 ```
 
-## Collaboration Notes
+## Pretrained Weights
 
-1. **Real data testing**: run the following command to test `best.pt` on images from `test_real_new`:
-   ```dos
-   python detect.py --weights runs/train/dirt_binary_train/weights/best.pt --img 1024 --source ../data/images/test_real_new
-   ```
-2. **Quantitative evaluation**: use `val.py` to evaluate validation or test sets, and record precision, recall, mAP@0.5, and F1.
-3. **Weights**: `best.pt` is a binary weight file and should be loaded through code.
-4. **Git hygiene**: `data/`, large weight files, and generated experiment outputs should not be committed.
-5. **Memory optimization**: if `CUDA out of memory` occurs, try changing `--batch 2` to `--batch 1`.
+Place the official Ultralytics checkpoints in `weights/`:
 
----
+```text
+weights/yolo11s.pt
+weights/yolo11m.pt
+```
 
-*This project is based on the Ultralytics YOLOv3 community implementation.*
+Alternatively, replace `weights/yolo11s.pt` or `weights/yolo11m.pt` in a command
+with `yolo11s.pt` or `yolo11m.pt` and let Ultralytics download the checkpoint.
+
+## Reproduce Binary Training
+
+The final binary comparison uses SGD, 1280-pixel input, and 30 epochs:
+
+```powershell
+yolo detect train model=weights/yolo11s.pt data=binary_full.yaml imgsz=1280 batch=8 epochs=30 optimizer=SGD name=yolo11s_final_img1280_sgd_e30_b8
+```
+
+```powershell
+yolo detect train model=weights/yolo11m.pt data=binary_full.yaml imgsz=1280 batch=4 epochs=30 optimizer=SGD name=yolo11m_final_img1280_sgd_e30_b4
+```
+
+Batch size 4 is used for YOLO11m because the 1280-pixel batch-8 configuration
+exceeded the available GPU memory. Ultralytics validates on the `val` split during
+training and saves outputs under `runs/detect/<name>/`.
+
+## Reproduce Multiclass Training
+
+Train the YOLO11m multiclass baseline:
+
+```powershell
+yolo detect train model=weights/yolo11m.pt data=multiclass_small.yaml imgsz=1024 batch=2 epochs=30 workers=0 name=yolo11m_multiclass_e30_i1024_b2
+```
+
+Fine-tune the best baseline checkpoint with the tested conservative schedule:
+
+```powershell
+yolo detect train model=runs/detect/yolo11m_multiclass_e30_i1024_b2/weights/best.pt data=multiclass_small.yaml imgsz=1024 batch=2 epochs=15 optimizer=AdamW lr0=0.0001 lrf=0.1 cos_lr=True mosaic=0 patience=5 workers=0 name=yolo11m_multiclass_finetune_adamw_cos_e15_i1024_b2
+```
+
+`workers=0` was used for stable Windows data loading. It may be increased on a
+system where multiprocessing is stable.
+
+## Evaluate on Real Images
+
+The `test` split in each root YAML points to `test_real_new`. These commands place
+the evaluation output under `runs/detect/test/`:
+
+```powershell
+yolo detect val model=runs/detect/yolo11s_final_img1280_sgd_e30_b8/weights/best.pt data=binary_full.yaml imgsz=1280 split=test project=test name=yolo11s_final_img1280_sgd_e30_b8_test_real_new
+```
+
+```powershell
+yolo detect val model=runs/detect/yolo11m_final_img1280_sgd_e30_b4/weights/best.pt data=binary_full.yaml imgsz=1280 split=test project=test name=yolo11m_final_img1280_sgd_e30_b4_test_real_new
+```
+
+```powershell
+yolo detect val model=runs/detect/yolo11m_multiclass_e30_i1024_b2/weights/best.pt data=multiclass_small.yaml imgsz=1024 split=test project=test name=yolo11m_multiclass_e30_i1024_b2_test_real_new
+```
+
+To evaluate the fine-tuned multiclass model, replace the model path and run name
+with the corresponding fine-tuning directory.
+
+## Prediction
+
+Run prediction on an image directory or video with a trained checkpoint:
+
+```powershell
+yolo detect predict model=runs/detect/yolo11s_final_img1280_sgd_e30_b8/weights/best.pt source=path/to/images_or_video imgsz=1280 project=predict name=binary_demo
+```
+
+## Key Results
+
+### Binary Detection
+
+| Model | Split | Precision | Recall | mAP50 | mAP50-95 | Inference |
+|---|---|---:|---:|---:|---:|---:|
+| YOLO11s, 1280, 30 epochs | synthetic validation | 97.2% | 95.1% | 97.9% | 90.6% | - |
+| YOLO11m, 1280, 30 epochs | synthetic validation | 97.4% | 96.2% | 98.3% | 92.3% | - |
+| YOLO11s, 1280, 30 epochs | `test_real_new` | 78.1% | 77.2% | 80.6% | 56.2% | 9.6 ms/image |
+| YOLO11m, 1280, 30 epochs | `test_real_new` | 83.5% | 70.4% | 77.8% | 53.2% | 21.4 ms/image |
+
+YOLO11m is the validation-selected model. YOLO11s is the stronger practical
+candidate on the independent real-image test split and is also substantially
+faster. The broader real-test sweep is recorded in
+[`runs/detect/test/yolo11_test_real_new_summary.csv`](runs/detect/test/yolo11_test_real_new_summary.csv).
+
+### Multiclass Detection
+
+| Model | Split | Precision | Recall | mAP50 | mAP50-95 |
+|---|---|---:|---:|---:|---:|
+| YOLO11m baseline | synthetic validation | 95.3% | 93.0% | 96.1% | 81.4% |
+| YOLO11m baseline | `test_real_new` | 66.5% | 77.6% | 73.7% | 55.4% |
+| YOLO11m fine-tuned | synthetic validation | 96.7% | 94.4% | 96.8% | 82.6% |
+| YOLO11m fine-tuned | `test_real_new` | 72.6% | 72.1% | 72.6% | 55.7% |
+
+The gap between synthetic validation and real testing is the main limitation in
+both tasks. Fine-tuning improves synthetic validation but does not improve real
+mAP50.
+
+## Experiment Documentation
+
+- [Binary model and optimizer screening](docs/yolo11_binary_optimization.md)
+- [Resolution and training strategy](docs/yolo11_resolution_and_training_strategy.md)
+- [Final binary experiments](docs/yolo11_final_experiment_summary.md)
+- [Real-test diagnostic exploration](docs/yolo11_real_test_extra_exploration.md)
+- [Multiclass training summary](docs/yolo11_multiclass_training_summary.md)
+- [Multiclass fine-tuning analysis](docs/yolo11_multiclass_finetuning_analysis.md)
+- [Multiclass real-test analysis](docs/yolo11_multiclass_real_test_analysis.md)
+- [Final report](<Vision-based Dirt Detection for Cleaning Robot.pdf>)
+- [Final presentation](LabSR+BV_Final_2026_p2_Tao_Song_Ren.pdf)
+
+## Limitations
+
+- Most training and validation images are synthetic or blended, while the final
+  test split contains real images.
+- `test_real_new` contains only 80 images, so its estimates have relatively high
+  uncertainty.
+- The real test data do not include a dedicated background-only subset.
+- The real test split was later reused for diagnostic analysis after the original
+  validation-selected model generalized poorly. Those later comparisons should
+  not be interpreted as a clean hyperparameter-selection benchmark.
+
+## Reference
+
+This project is based on *DirtNet: Visual Dirt Detection for Autonomous Cleaning
+Robots* (ICRA 2020) and uses the Ultralytics YOLO11 implementation.

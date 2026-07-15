@@ -1,5 +1,4 @@
 "Model","Run","TestDir","imgsz","batch","Precision","Recall","mAP50","mAP50_95","Inference_ms","Dirt_P","Dirt_R","Dirt_mAP50","Object_P","Object_R","Object_mAP50"
-"YOLO11s","yolo11s_full_sgd_aligned_aug_e15_b8","runs/detect/test/yolo11s_full_sgd_aligned_aug_e15_b8_test_real_new","1024","8","0.837","0.845","0.885","0.623","6.2","0.882","0.726","0.816","0.793","0.965","0.954"
 "YOLO11s","yolo11s_full_sgd_e15_b8","runs/detect/test/yolo11s_full_sgd_e15_b8_test_real_new","1024","8","0.837","0.845","0.885","0.623","6.2","0.882","0.726","0.816","0.793","0.965","0.954"
 "YOLO11m","yolo11m_test_img1280_sgd_e1_b4","runs/detect/test/yolo11m_test_img1280_sgd_e1_b4_test_real_new","1280","4","0.799","0.823","0.881","0.631","21.3","0.887","0.694","0.836","0.711","0.951","0.925"
 "YOLO11m","yolo11m_full_sgd_e15_b8","runs/detect/test/yolo11m_full_sgd_e15_b8_test_real_new","1024","8","0.841","0.835","0.878","0.623","14.3","0.887","0.744","0.822","0.794","0.926","0.935"

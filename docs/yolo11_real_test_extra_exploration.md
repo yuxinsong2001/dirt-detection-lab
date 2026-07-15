@@ -37,7 +37,6 @@ All available YOLO11s and YOLO11m models were evaluated on `test_real_new`. The 
 | Model | Experiment | imgsz | Precision | Recall | mAP50 | mAP50-95 | Inference |
 |---|---|---:|---:|---:|---:|---:|---:|
 | YOLO11s | `yolo11s_full_sgd_e15_b8` | 1024 | 83.7% | 84.5% | 88.5% | 62.3% | 6.2 ms |
-| YOLO11s | `yolo11s_full_sgd_aligned_aug_e15_b8` | 1024 | 83.7% | 84.5% | 88.5% | 62.3% | 6.2 ms |
 | YOLO11m | `yolo11m_test_img1280_sgd_e1_b4` | 1280 | 79.9% | 82.3% | 88.1% | 63.1% | 21.3 ms |
 | YOLO11m | `yolo11m_full_sgd_e15_b8` | 1024 | 84.1% | 83.5% | 87.8% | 62.3% | 14.3 ms |
 | YOLO11s | `yolo11s_full_sgd_aligned_aug_amp_false_e15_b8` | 1024 | 82.9% | 83.4% | 87.5% | 62.5% | 6.3 ms |

@@ -1,9 +1,2 @@
 ultralytics
-torch
-torchvision
-opencv-python
-pyyaml
-matplotlib
-tqdm
-pandas
-seaborn
+Pillow
