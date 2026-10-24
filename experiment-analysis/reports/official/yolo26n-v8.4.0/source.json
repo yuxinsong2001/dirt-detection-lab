@@ -1,0 +1,36 @@
+{
+  "publisher": "Ultralytics",
+  "repository": "https://github.com/ultralytics/assets",
+  "release_tag": "v8.4.0",
+  "release_url": "https://github.com/ultralytics/assets/releases/tag/v8.4.0",
+  "release_api": "https://api.github.com/repos/ultralytics/assets/releases/tags/v8.4.0",
+  "release_published_at": "2026-01-13T22:56:46Z",
+  "asset_name": "yolo26n.pt",
+  "asset_id": 340096055,
+  "asset_updated_at": "2026-01-13T19:59:21Z",
+  "download_url": "https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo26n.pt",
+  "size_bytes": 5544453,
+  "sha256": "9b09cc8bf347f0fc8a5f7657480587f25db09b34bf33b0652110fb03a8ad4fef",
+  "checksum_matches_official_digest": true,
+  "retrieved_at_utc": "2026-10-24T15:39:10.399436+00:00",
+  "documentation_url": "https://docs.ultralytics.com/guides/yolo26-training-recipe/",
+  "checkpoint_version": "8.3.222",
+  "checkpoint_git": {
+    "root": "/home/lq/codes/ultralytics",
+    "branch": "exp-main",
+    "commit": "cb13d5f9cfbd6f299da3620c625f81d721dc2849",
+    "origin": "https://github.com/ultralytics/ultralytics.git"
+  },
+  "scope": "One publisher-provided checkpoint; not a controlled parameter sweep",
+  "operations_performed": [
+    "download",
+    "checksum verification",
+    "saved metadata extraction"
+  ],
+  "operations_not_performed": [
+    "training",
+    "inference",
+    "validation",
+    "tensor reconstruction"
+  ]
+}

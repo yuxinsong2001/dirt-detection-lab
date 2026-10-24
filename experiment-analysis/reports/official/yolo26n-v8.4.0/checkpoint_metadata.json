@@ -1,0 +1,12 @@
+{
+  "git": {
+    "root": "/home/lq/codes/ultralytics",
+    "branch": "exp-main",
+    "commit": "cb13d5f9cfbd6f299da3620c625f81d721dc2849",
+    "origin": "https://github.com/ultralytics/ultralytics.git"
+  },
+  "date": "2025-12-15T06:36:05.381708",
+  "version": "8.3.222",
+  "epoch": -1,
+  "license": "AGPL-3.0 (https://ultralytics.com/license)"
+}

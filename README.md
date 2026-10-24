@@ -1,7 +1,8 @@
 # Vision-Based Dirt Detection for Cleaning Robots
 
-Utilities, experimental evidence and reports are organized separately.
-The old utility commands remain available through compatibility launchers.
+Start with [the repository navigation guide](START_HERE.md) to locate code,
+experiment records, reports and generated analysis outputs. Personal bilingual
+learning notes remain local and are not part of the GitHub deliverables.
 
 ## Project Overview
 
@@ -39,6 +40,7 @@ the experiments can be reproduced locally.
 |-- runs/                             # Tracked metrics and plots; weights are ignored
 |-- scripts/                          # Original project utility implementations
 |-- tools/                            # Compatibility launchers for old commands
+|-- experiment-analysis/              # New analysis tools, tests, outputs and local learning notes
 |-- reports/                          # PDF reports, presentations and analysis outputs
 |-- logs/                             # Runtime text logs (ignored)
 |-- archive/                          # Preserved source downloads
@@ -48,6 +50,10 @@ the experiments can be reproduced locally.
 
 Run all commands below from the repository root.
 
+The repository has two related parts: the original YOLO experiments and the
+self-contained [experiment analysis module](experiment-analysis/README.md).
+See [the layout and maintenance policy](docs/repository-layout.md) for stable
+data paths, archived outputs and compatibility entry points.
 
 ## Environment
 
@@ -265,7 +271,9 @@ commands. Original tools/*.py commands and the root data-converter command remai
 available through compatibility launchers, without duplicate implementations.
 
 ```powershell
+python -B -m unittest discover -s experiment-analysis/tests -p test_inventory_experiments.py -v
 python -B -m unittest discover -s scripts/tests -p test_compatibility.py -v
+python -B experiment-analysis/tools/inventory_experiments.py
 ```
 
 These checks do not train, convert datasets or regenerate reports. Nothing is
