@@ -1,0 +1,1350 @@
+{
+  "schema_version": 1,
+  "scope": "runs directory only; file inventory, not independent experiment count",
+  "root": "D:/DirtNet_Project",
+  "summary": {
+    "training_csv_files": 41,
+    "training_rows_including_copies": 858,
+    "distinct_csv_byte_contents": 39,
+    "row_count_distribution": {
+      "30": 19,
+      "15": 19,
+      "1": 3
+    },
+    "other_csv_files": 2
+  },
+  "byte_identical_groups": [
+    [
+      "runs/detect/runs/yolo11/dirt_multiclass_m_e30_i1024_b2/results.csv",
+      "runs/detect/training/yolo11m_multiclass_e30_i1024_b2/results.csv"
+    ],
+    [
+      "runs/detect/training/yolo11m_multiclass_finetune_adamw_cos_e15_i1024_b2/results.csv",
+      "runs/yolo11/dirt_multiclass_m_best_finetune/results.csv"
+    ]
+  ],
+  "training_records": [
+    {
+      "path": "runs/detect/runs/yolo11/dirt_multiclass_m_e30_i1024_b2/results.csv",
+      "sha256": "fd006e40be47c58ba98d92364641ece72a73fbedb8e9da46707e3f661bd92b81",
+      "rows": 30,
+      "columns": [
+        "epoch",
+        "time",
+        "train/box_loss",
+        "train/cls_loss",
+        "train/dfl_loss",
+        "metrics/precision(B)",
+        "metrics/recall(B)",
+        "metrics/mAP50(B)",
+        "metrics/mAP50-95(B)",
+        "val/box_loss",
+        "val/cls_loss",
+        "val/dfl_loss",
+        "lr/pg0",
+        "lr/pg1",
+        "lr/pg2"
+      ],
+      "metric_columns": {
+        "precision": "metrics/precision(B)",
+        "recall": "metrics/recall(B)",
+        "map50": "metrics/mAP50(B)",
+        "map50_95": "metrics/mAP50-95(B)"
+      },
+      "config_files": [
+        "args.yaml"
+      ],
+      "issues": []
+    },
+    {
+      "path": "runs/detect/training/yolo11l_e30_default/results.csv",
+      "sha256": "bb2d773821052f7a37548805f01208c0ca4db9aa8c4fae1e30ae204f355770a9",
+      "rows": 30,
+      "columns": [
+        "epoch",
+        "time",
+        "train/box_loss",
+        "train/cls_loss",
+        "train/dfl_loss",
+        "metrics/precision(B)",
+        "metrics/recall(B)",
+        "metrics/mAP50(B)",
+        "metrics/mAP50-95(B)",
+        "val/box_loss",
+        "val/cls_loss",
+        "val/dfl_loss",
+        "lr/pg0",
+        "lr/pg1",
+        "lr/pg2"
+      ],
+      "metric_columns": {
+        "precision": "metrics/precision(B)",
+        "recall": "metrics/recall(B)",
+        "map50": "metrics/mAP50(B)",
+        "map50_95": "metrics/mAP50-95(B)"
+      },
+      "config_files": [
+        "args.yaml"
+      ],
+      "issues": []
+    },
+    {
+      "path": "runs/detect/training/yolo11l_e30_sgd_aligned/results.csv",
+      "sha256": "a415ac53fbea4ba545685edcaf434a3c038d71473af3e6b10bca155dd85139b2",
+      "rows": 30,
+      "columns": [
+        "epoch",
+        "time",
+        "train/box_loss",
+        "train/cls_loss",
+        "train/dfl_loss",
+        "metrics/precision(B)",
+        "metrics/recall(B)",
+        "metrics/mAP50(B)",
+        "metrics/mAP50-95(B)",
+        "val/box_loss",
+        "val/cls_loss",
+        "val/dfl_loss",
+        "lr/pg0",
+        "lr/pg1",
+        "lr/pg2"
+      ],
+      "metric_columns": {
+        "precision": "metrics/precision(B)",
+        "recall": "metrics/recall(B)",
+        "map50": "metrics/mAP50(B)",
+        "map50_95": "metrics/mAP50-95(B)"
+      },
+      "config_files": [
+        "args.yaml"
+      ],
+      "issues": []
+    },
+    {
+      "path": "runs/detect/training/yolo11m_final_img1280_sgd_e30_b4/results.csv",
+      "sha256": "8b98802838bb43d5a22489c8be3d0d5baa3b5062103b96413cf168886f339fb4",
+      "rows": 30,
+      "columns": [
+        "epoch",
+        "time",
+        "train/box_loss",
+        "train/cls_loss",
+        "train/dfl_loss",
+        "metrics/precision(B)",
+        "metrics/recall(B)",
+        "metrics/mAP50(B)",
+        "metrics/mAP50-95(B)",
+        "val/box_loss",
+        "val/cls_loss",
+        "val/dfl_loss",
+        "lr/pg0",
+        "lr/pg1",
+        "lr/pg2"
+      ],
+      "metric_columns": {
+        "precision": "metrics/precision(B)",
+        "recall": "metrics/recall(B)",
+        "map50": "metrics/mAP50(B)",
+        "map50_95": "metrics/mAP50-95(B)"
+      },
+      "config_files": [
+        "args.yaml"
+      ],
+      "issues": []
+    },
+    {
+      "path": "runs/detect/training/yolo11m_full_default_e15_b8/results.csv",
+      "sha256": "a7b1d5fb9da4cf30539906868dab78396a47b64be4103dad41c6c40347371ba1",
+      "rows": 15,
+      "columns": [
+        "epoch",
+        "time",
+        "train/box_loss",
+        "train/cls_loss",
+        "train/dfl_loss",
+        "metrics/precision(B)",
+        "metrics/recall(B)",
+        "metrics/mAP50(B)",
+        "metrics/mAP50-95(B)",
+        "val/box_loss",
+        "val/cls_loss",
+        "val/dfl_loss",
+        "lr/pg0",
+        "lr/pg1",
+        "lr/pg2"
+      ],
+      "metric_columns": {
+        "precision": "metrics/precision(B)",
+        "recall": "metrics/recall(B)",
+        "map50": "metrics/mAP50(B)",
+        "map50_95": "metrics/mAP50-95(B)"
+      },
+      "config_files": [
+        "args.yaml"
+      ],
+      "issues": []
+    },
+    {
+      "path": "runs/detect/training/yolo11m_full_sgd_e15_b8/results.csv",
+      "sha256": "e9ab37bbaa30b024333cdd7025b529456f1af8ac9502f3c2f60f7ebf30892267",
+      "rows": 15,
+      "columns": [
+        "epoch",
+        "time",
+        "train/box_loss",
+        "train/cls_loss",
+        "train/dfl_loss",
+        "metrics/precision(B)",
+        "metrics/recall(B)",
+        "metrics/mAP50(B)",
+        "metrics/mAP50-95(B)",
+        "val/box_loss",
+        "val/cls_loss",
+        "val/dfl_loss",
+        "lr/pg0",
+        "lr/pg1",
+        "lr/pg2"
+      ],
+      "metric_columns": {
+        "precision": "metrics/precision(B)",
+        "recall": "metrics/recall(B)",
+        "map50": "metrics/mAP50(B)",
+        "map50_95": "metrics/mAP50-95(B)"
+      },
+      "config_files": [
+        "args.yaml"
+      ],
+      "issues": []
+    },
+    {
+      "path": "runs/detect/training/yolo11m_multiclass_e30_i1024_b2/results.csv",
+      "sha256": "fd006e40be47c58ba98d92364641ece72a73fbedb8e9da46707e3f661bd92b81",
+      "rows": 30,
+      "columns": [
+        "epoch",
+        "time",
+        "train/box_loss",
+        "train/cls_loss",
+        "train/dfl_loss",
+        "metrics/precision(B)",
+        "metrics/recall(B)",
+        "metrics/mAP50(B)",
+        "metrics/mAP50-95(B)",
+        "val/box_loss",
+        "val/cls_loss",
+        "val/dfl_loss",
+        "lr/pg0",
+        "lr/pg1",
+        "lr/pg2"
+      ],
+      "metric_columns": {
+        "precision": "metrics/precision(B)",
+        "recall": "metrics/recall(B)",
+        "map50": "metrics/mAP50(B)",
+        "map50_95": "metrics/mAP50-95(B)"
+      },
+      "config_files": [
+        "args.yaml"
+      ],
+      "issues": []
+    },
+    {
+      "path": "runs/detect/training/yolo11m_multiclass_finetune_adamw_cos_e15_i1024_b2/results.csv",
+      "sha256": "b12877a620ec13818cda083b053cae7a03adef51b152e3149539842051fbc7bf",
+      "rows": 15,
+      "columns": [
+        "epoch",
+        "time",
+        "train/box_loss",
+        "train/cls_loss",
+        "train/dfl_loss",
+        "metrics/precision(B)",
+        "metrics/recall(B)",
+        "metrics/mAP50(B)",
+        "metrics/mAP50-95(B)",
+        "val/box_loss",
+        "val/cls_loss",
+        "val/dfl_loss",
+        "lr/pg0",
+        "lr/pg1",
+        "lr/pg2"
+      ],
+      "metric_columns": {
+        "precision": "metrics/precision(B)",
+        "recall": "metrics/recall(B)",
+        "map50": "metrics/mAP50(B)",
+        "map50_95": "metrics/mAP50-95(B)"
+      },
+      "config_files": [
+        "args.yaml"
+      ],
+      "issues": []
+    },
+    {
+      "path": "runs/detect/training/yolo11m_short_sgd_e1_b8/results.csv",
+      "sha256": "491acfa6e557b140913d97968a04eaedc99ae5dfc547a69629e8d1d61df3e847",
+      "rows": 1,
+      "columns": [
+        "epoch",
+        "time",
+        "train/box_loss",
+        "train/cls_loss",
+        "train/dfl_loss",
+        "metrics/precision(B)",
+        "metrics/recall(B)",
+        "metrics/mAP50(B)",
+        "metrics/mAP50-95(B)",
+        "val/box_loss",
+        "val/cls_loss",
+        "val/dfl_loss",
+        "lr/pg0",
+        "lr/pg1",
+        "lr/pg2"
+      ],
+      "metric_columns": {
+        "precision": "metrics/precision(B)",
+        "recall": "metrics/recall(B)",
+        "map50": "metrics/mAP50(B)",
+        "map50_95": "metrics/mAP50-95(B)"
+      },
+      "config_files": [
+        "args.yaml"
+      ],
+      "issues": [
+        "single_row_review_purpose"
+      ]
+    },
+    {
+      "path": "runs/detect/training/yolo11m_test_img1280_sgd_e1_b4/results.csv",
+      "sha256": "02c1cd5cd2552972b6979cfb450e7a6a6cb576cdd5ca3dbe5a90a5def193d66e",
+      "rows": 1,
+      "columns": [
+        "epoch",
+        "time",
+        "train/box_loss",
+        "train/cls_loss",
+        "train/dfl_loss",
+        "metrics/precision(B)",
+        "metrics/recall(B)",
+        "metrics/mAP50(B)",
+        "metrics/mAP50-95(B)",
+        "val/box_loss",
+        "val/cls_loss",
+        "val/dfl_loss",
+        "lr/pg0",
+        "lr/pg1",
+        "lr/pg2"
+      ],
+      "metric_columns": {
+        "precision": "metrics/precision(B)",
+        "recall": "metrics/recall(B)",
+        "map50": "metrics/mAP50(B)",
+        "map50_95": "metrics/mAP50-95(B)"
+      },
+      "config_files": [
+        "args.yaml"
+      ],
+      "issues": [
+        "single_row_review_purpose"
+      ]
+    },
+    {
+      "path": "runs/detect/training/yolo11n_full_default_e15_b8/results.csv",
+      "sha256": "790a1cdd6806cff1fcd91918d69fc49865faf0f393c72237f80e295b4c5b2d82",
+      "rows": 15,
+      "columns": [
+        "epoch",
+        "time",
+        "train/box_loss",
+        "train/cls_loss",
+        "train/dfl_loss",
+        "metrics/precision(B)",
+        "metrics/recall(B)",
+        "metrics/mAP50(B)",
+        "metrics/mAP50-95(B)",
+        "val/box_loss",
+        "val/cls_loss",
+        "val/dfl_loss",
+        "lr/pg0",
+        "lr/pg1",
+        "lr/pg2"
+      ],
+      "metric_columns": {
+        "precision": "metrics/precision(B)",
+        "recall": "metrics/recall(B)",
+        "map50": "metrics/mAP50(B)",
+        "map50_95": "metrics/mAP50-95(B)"
+      },
+      "config_files": [
+        "args.yaml"
+      ],
+      "issues": []
+    },
+    {
+      "path": "runs/detect/training/yolo11s_final_img1280_sgd_e30_b8/results.csv",
+      "sha256": "3fee465c83af8c9a2777a9528bbccec364dd79c3d6297a0b4fc8ef427e405032",
+      "rows": 30,
+      "columns": [
+        "epoch",
+        "time",
+        "train/box_loss",
+        "train/cls_loss",
+        "train/dfl_loss",
+        "metrics/precision(B)",
+        "metrics/recall(B)",
+        "metrics/mAP50(B)",
+        "metrics/mAP50-95(B)",
+        "val/box_loss",
+        "val/cls_loss",
+        "val/dfl_loss",
+        "lr/pg0",
+        "lr/pg1",
+        "lr/pg2"
+      ],
+      "metric_columns": {
+        "precision": "metrics/precision(B)",
+        "recall": "metrics/recall(B)",
+        "map50": "metrics/mAP50(B)",
+        "map50_95": "metrics/mAP50-95(B)"
+      },
+      "config_files": [
+        "args.yaml"
+      ],
+      "issues": []
+    },
+    {
+      "path": "runs/detect/training/yolo11s_full_default_e15_b8/results.csv",
+      "sha256": "3f428f6deb190e4efa2ba353412aebd6dfefff8b672b9d8f59af397eb986d813",
+      "rows": 15,
+      "columns": [
+        "epoch",
+        "time",
+        "train/box_loss",
+        "train/cls_loss",
+        "train/dfl_loss",
+        "metrics/precision(B)",
+        "metrics/recall(B)",
+        "metrics/mAP50(B)",
+        "metrics/mAP50-95(B)",
+        "val/box_loss",
+        "val/cls_loss",
+        "val/dfl_loss",
+        "lr/pg0",
+        "lr/pg1",
+        "lr/pg2"
+      ],
+      "metric_columns": {
+        "precision": "metrics/precision(B)",
+        "recall": "metrics/recall(B)",
+        "map50": "metrics/mAP50(B)",
+        "map50_95": "metrics/mAP50-95(B)"
+      },
+      "config_files": [
+        "args.yaml"
+      ],
+      "issues": []
+    },
+    {
+      "path": "runs/detect/training/yolo11s_full_sgd_aligned_aug_amp_false_e15_b8/results.csv",
+      "sha256": "625da9df1d31dc51fd99273a6f4d04c14f42c2e687a8d8886695cdcb358b6579",
+      "rows": 15,
+      "columns": [
+        "epoch",
+        "time",
+        "train/box_loss",
+        "train/cls_loss",
+        "train/dfl_loss",
+        "metrics/precision(B)",
+        "metrics/recall(B)",
+        "metrics/mAP50(B)",
+        "metrics/mAP50-95(B)",
+        "val/box_loss",
+        "val/cls_loss",
+        "val/dfl_loss",
+        "lr/pg0",
+        "lr/pg1",
+        "lr/pg2"
+      ],
+      "metric_columns": {
+        "precision": "metrics/precision(B)",
+        "recall": "metrics/recall(B)",
+        "map50": "metrics/mAP50(B)",
+        "map50_95": "metrics/mAP50-95(B)"
+      },
+      "config_files": [
+        "args.yaml"
+      ],
+      "issues": []
+    },
+    {
+      "path": "runs/detect/training/yolo11s_full_sgd_e15_b8/results.csv",
+      "sha256": "f02e11c75e5483fc3445aa54089819fd08081a7b2780a0880a9efb10fa0e6b8e",
+      "rows": 15,
+      "columns": [
+        "epoch",
+        "time",
+        "train/box_loss",
+        "train/cls_loss",
+        "train/dfl_loss",
+        "metrics/precision(B)",
+        "metrics/recall(B)",
+        "metrics/mAP50(B)",
+        "metrics/mAP50-95(B)",
+        "val/box_loss",
+        "val/cls_loss",
+        "val/dfl_loss",
+        "lr/pg0",
+        "lr/pg1",
+        "lr/pg2"
+      ],
+      "metric_columns": {
+        "precision": "metrics/precision(B)",
+        "recall": "metrics/recall(B)",
+        "map50": "metrics/mAP50(B)",
+        "map50_95": "metrics/mAP50-95(B)"
+      },
+      "config_files": [
+        "args.yaml"
+      ],
+      "issues": []
+    },
+    {
+      "path": "runs/detect/training/yolo11s_full_sgd_e30_b8/results.csv",
+      "sha256": "6b142cdaee273ef2b0cf3235c6a30374d51a8d0bb52439165e5ed6b63846c91e",
+      "rows": 30,
+      "columns": [
+        "epoch",
+        "time",
+        "train/box_loss",
+        "train/cls_loss",
+        "train/dfl_loss",
+        "metrics/precision(B)",
+        "metrics/recall(B)",
+        "metrics/mAP50(B)",
+        "metrics/mAP50-95(B)",
+        "val/box_loss",
+        "val/cls_loss",
+        "val/dfl_loss",
+        "lr/pg0",
+        "lr/pg1",
+        "lr/pg2"
+      ],
+      "metric_columns": {
+        "precision": "metrics/precision(B)",
+        "recall": "metrics/recall(B)",
+        "map50": "metrics/mAP50(B)",
+        "map50_95": "metrics/mAP50-95(B)"
+      },
+      "config_files": [
+        "args.yaml"
+      ],
+      "issues": []
+    },
+    {
+      "path": "runs/detect/training/yolo11s_full_sgd_img1280_cos_e15_b8/results.csv",
+      "sha256": "9cece5f4a6ab5e0a2dbde38dc30cebdfbae199b3c04609175a75d61bb052d460",
+      "rows": 15,
+      "columns": [
+        "epoch",
+        "time",
+        "train/box_loss",
+        "train/cls_loss",
+        "train/dfl_loss",
+        "metrics/precision(B)",
+        "metrics/recall(B)",
+        "metrics/mAP50(B)",
+        "metrics/mAP50-95(B)",
+        "val/box_loss",
+        "val/cls_loss",
+        "val/dfl_loss",
+        "lr/pg0",
+        "lr/pg1",
+        "lr/pg2"
+      ],
+      "metric_columns": {
+        "precision": "metrics/precision(B)",
+        "recall": "metrics/recall(B)",
+        "map50": "metrics/mAP50(B)",
+        "map50_95": "metrics/mAP50-95(B)"
+      },
+      "config_files": [
+        "args.yaml"
+      ],
+      "issues": []
+    },
+    {
+      "path": "runs/detect/training/yolo11s_full_sgd_img1280_e15_b8/results.csv",
+      "sha256": "131daa6af142ada0f088510847a5d28ea997b19f648e66440458fb90566e3bfe",
+      "rows": 15,
+      "columns": [
+        "epoch",
+        "time",
+        "train/box_loss",
+        "train/cls_loss",
+        "train/dfl_loss",
+        "metrics/precision(B)",
+        "metrics/recall(B)",
+        "metrics/mAP50(B)",
+        "metrics/mAP50-95(B)",
+        "val/box_loss",
+        "val/cls_loss",
+        "val/dfl_loss",
+        "lr/pg0",
+        "lr/pg1",
+        "lr/pg2"
+      ],
+      "metric_columns": {
+        "precision": "metrics/precision(B)",
+        "recall": "metrics/recall(B)",
+        "map50": "metrics/mAP50(B)",
+        "map50_95": "metrics/mAP50-95(B)"
+      },
+      "config_files": [
+        "args.yaml"
+      ],
+      "issues": []
+    },
+    {
+      "path": "runs/detect/training/yolo11s_full_sgd_img1280_nomosaic_e15_b8/results.csv",
+      "sha256": "07b183b4476e6ca36528d8807969935aab8833c1467f076154fc1fa7911c4e95",
+      "rows": 15,
+      "columns": [
+        "epoch",
+        "time",
+        "train/box_loss",
+        "train/cls_loss",
+        "train/dfl_loss",
+        "metrics/precision(B)",
+        "metrics/recall(B)",
+        "metrics/mAP50(B)",
+        "metrics/mAP50-95(B)",
+        "val/box_loss",
+        "val/cls_loss",
+        "val/dfl_loss",
+        "lr/pg0",
+        "lr/pg1",
+        "lr/pg2"
+      ],
+      "metric_columns": {
+        "precision": "metrics/precision(B)",
+        "recall": "metrics/recall(B)",
+        "map50": "metrics/mAP50(B)",
+        "map50_95": "metrics/mAP50-95(B)"
+      },
+      "config_files": [
+        "args.yaml"
+      ],
+      "issues": []
+    },
+    {
+      "path": "runs/detect/training/yolo11s_full_sgd_img1280_rect_e15_b8/results.csv",
+      "sha256": "ad695c012edf07581899050e5da9ceba676a1deeb968959db8080c9f87530af2",
+      "rows": 15,
+      "columns": [
+        "epoch",
+        "time",
+        "train/box_loss",
+        "train/cls_loss",
+        "train/dfl_loss",
+        "metrics/precision(B)",
+        "metrics/recall(B)",
+        "metrics/mAP50(B)",
+        "metrics/mAP50-95(B)",
+        "val/box_loss",
+        "val/cls_loss",
+        "val/dfl_loss",
+        "lr/pg0",
+        "lr/pg1",
+        "lr/pg2"
+      ],
+      "metric_columns": {
+        "precision": "metrics/precision(B)",
+        "recall": "metrics/recall(B)",
+        "map50": "metrics/mAP50(B)",
+        "map50_95": "metrics/mAP50-95(B)"
+      },
+      "config_files": [
+        "args.yaml"
+      ],
+      "issues": []
+    },
+    {
+      "path": "runs/detect/training/yolo11s_short_sgd_e1_b8/results.csv",
+      "sha256": "1fd353d16875997c473ee1dddab8d65ba469abee1c334d5227f0598ac999aff3",
+      "rows": 1,
+      "columns": [
+        "epoch",
+        "time",
+        "train/box_loss",
+        "train/cls_loss",
+        "train/dfl_loss",
+        "metrics/precision(B)",
+        "metrics/recall(B)",
+        "metrics/mAP50(B)",
+        "metrics/mAP50-95(B)",
+        "val/box_loss",
+        "val/cls_loss",
+        "val/dfl_loss",
+        "lr/pg0",
+        "lr/pg1",
+        "lr/pg2"
+      ],
+      "metric_columns": {
+        "precision": "metrics/precision(B)",
+        "recall": "metrics/recall(B)",
+        "map50": "metrics/mAP50(B)",
+        "map50_95": "metrics/mAP50-95(B)"
+      },
+      "config_files": [
+        "args.yaml"
+      ],
+      "issues": [
+        "single_row_review_purpose"
+      ]
+    },
+    {
+      "path": "runs/detect/training/yolo26l_e30_default/results.csv",
+      "sha256": "bb1c00cbffb5adbcfe002e279d5e0688a8c778d407c05e0bcec2a5654b685718",
+      "rows": 30,
+      "columns": [
+        "epoch",
+        "time",
+        "train/box_loss",
+        "train/cls_loss",
+        "train/dfl_loss",
+        "metrics/precision(B)",
+        "metrics/recall(B)",
+        "metrics/mAP50(B)",
+        "metrics/mAP50-95(B)",
+        "val/box_loss",
+        "val/cls_loss",
+        "val/dfl_loss",
+        "lr/pg0",
+        "lr/pg1",
+        "lr/pg2"
+      ],
+      "metric_columns": {
+        "precision": "metrics/precision(B)",
+        "recall": "metrics/recall(B)",
+        "map50": "metrics/mAP50(B)",
+        "map50_95": "metrics/mAP50-95(B)"
+      },
+      "config_files": [
+        "args.yaml"
+      ],
+      "issues": []
+    },
+    {
+      "path": "runs/detect/training/yolo26l_e30_sgd_aligned/results.csv",
+      "sha256": "fc6d3d3c69fccbcec52c440bee381f9bfa03380462a26582182ae74876ad87ce",
+      "rows": 30,
+      "columns": [
+        "epoch",
+        "time",
+        "train/box_loss",
+        "train/cls_loss",
+        "train/dfl_loss",
+        "metrics/precision(B)",
+        "metrics/recall(B)",
+        "metrics/mAP50(B)",
+        "metrics/mAP50-95(B)",
+        "val/box_loss",
+        "val/cls_loss",
+        "val/dfl_loss",
+        "lr/pg0",
+        "lr/pg1",
+        "lr/pg2"
+      ],
+      "metric_columns": {
+        "precision": "metrics/precision(B)",
+        "recall": "metrics/recall(B)",
+        "map50": "metrics/mAP50(B)",
+        "map50_95": "metrics/mAP50-95(B)"
+      },
+      "config_files": [
+        "args.yaml"
+      ],
+      "issues": []
+    },
+    {
+      "path": "runs/detect/training/yolov3_binary_epochs30/results.csv",
+      "sha256": "b25c456c050d95afaf732dc384c1007c078b04f07c9b6dd83e8b1f27936002c1",
+      "rows": 30,
+      "columns": [
+        "epoch",
+        "train/box_loss",
+        "train/obj_loss",
+        "train/cls_loss",
+        "metrics/precision",
+        "metrics/recall",
+        "metrics/mAP_0.5",
+        "metrics/mAP_0.5:0.95",
+        "val/box_loss",
+        "val/obj_loss",
+        "val/cls_loss",
+        "x/lr0",
+        "x/lr1",
+        "x/lr2"
+      ],
+      "metric_columns": {
+        "precision": "metrics/precision",
+        "recall": "metrics/recall",
+        "map50": "metrics/mAP_0.5",
+        "map50_95": "metrics/mAP_0.5:0.95"
+      },
+      "config_files": [
+        "opt.yaml",
+        "hyp.yaml"
+      ],
+      "issues": []
+    },
+    {
+      "path": "runs/detect/training/yolov3_binary_img640/results.csv",
+      "sha256": "4a5402209e7b9ca95679ee702300d7c2dda5e66935d83fa38daa399ffa3f6262",
+      "rows": 15,
+      "columns": [
+        "epoch",
+        "train/box_loss",
+        "train/obj_loss",
+        "train/cls_loss",
+        "metrics/precision",
+        "metrics/recall",
+        "metrics/mAP_0.5",
+        "metrics/mAP_0.5:0.95",
+        "val/box_loss",
+        "val/obj_loss",
+        "val/cls_loss",
+        "x/lr0",
+        "x/lr1",
+        "x/lr2"
+      ],
+      "metric_columns": {
+        "precision": "metrics/precision",
+        "recall": "metrics/recall",
+        "map50": "metrics/mAP_0.5",
+        "map50_95": "metrics/mAP_0.5:0.95"
+      },
+      "config_files": [
+        "opt.yaml",
+        "hyp.yaml"
+      ],
+      "issues": []
+    },
+    {
+      "path": "runs/detect/training/yolov3_binary_train/results.csv",
+      "sha256": "8115a3f6fa65f8d8ecae4f74e7f6dc26459e2aff1ce63f0c1d2d14978e40efbc",
+      "rows": 15,
+      "columns": [
+        "epoch",
+        "train/box_loss",
+        "train/obj_loss",
+        "train/cls_loss",
+        "metrics/precision",
+        "metrics/recall",
+        "metrics/mAP_0.5",
+        "metrics/mAP_0.5:0.95",
+        "val/box_loss",
+        "val/obj_loss",
+        "val/cls_loss",
+        "x/lr0",
+        "x/lr1",
+        "x/lr2"
+      ],
+      "metric_columns": {
+        "precision": "metrics/precision",
+        "recall": "metrics/recall",
+        "map50": "metrics/mAP_0.5",
+        "map50_95": "metrics/mAP_0.5:0.95"
+      },
+      "config_files": [
+        "opt.yaml",
+        "hyp.yaml"
+      ],
+      "issues": []
+    },
+    {
+      "path": "runs/detect/training/yolov3u_default/results.csv",
+      "sha256": "16eb3889c5637512f530e8230d79b9be42b437d8b5dac34a25da2db8635fc1e5",
+      "rows": 15,
+      "columns": [
+        "epoch",
+        "time",
+        "train/box_loss",
+        "train/cls_loss",
+        "train/dfl_loss",
+        "metrics/precision(B)",
+        "metrics/recall(B)",
+        "metrics/mAP50(B)",
+        "metrics/mAP50-95(B)",
+        "val/box_loss",
+        "val/cls_loss",
+        "val/dfl_loss",
+        "lr/pg0",
+        "lr/pg1",
+        "lr/pg2"
+      ],
+      "metric_columns": {
+        "precision": "metrics/precision(B)",
+        "recall": "metrics/recall(B)",
+        "map50": "metrics/mAP50(B)",
+        "map50_95": "metrics/mAP50-95(B)"
+      },
+      "config_files": [
+        "args.yaml"
+      ],
+      "issues": []
+    },
+    {
+      "path": "runs/detect/training/yolov3u_e30_default/results.csv",
+      "sha256": "3330ed75422d364ee5766f2e6bbe7e519a8eee9c04f845695d64c57b7e0541f7",
+      "rows": 30,
+      "columns": [
+        "epoch",
+        "time",
+        "train/box_loss",
+        "train/cls_loss",
+        "train/dfl_loss",
+        "metrics/precision(B)",
+        "metrics/recall(B)",
+        "metrics/mAP50(B)",
+        "metrics/mAP50-95(B)",
+        "val/box_loss",
+        "val/cls_loss",
+        "val/dfl_loss",
+        "lr/pg0",
+        "lr/pg1",
+        "lr/pg2"
+      ],
+      "metric_columns": {
+        "precision": "metrics/precision(B)",
+        "recall": "metrics/recall(B)",
+        "map50": "metrics/mAP50(B)",
+        "map50_95": "metrics/mAP50-95(B)"
+      },
+      "config_files": [
+        "args.yaml"
+      ],
+      "issues": []
+    },
+    {
+      "path": "runs/detect/training/yolov3u_e30_sgd_aligned/results.csv",
+      "sha256": "25e5a09409675fb49246e3e23daafb620fa6ce82c68a7675a55efb18d6690d76",
+      "rows": 30,
+      "columns": [
+        "epoch",
+        "time",
+        "train/box_loss",
+        "train/cls_loss",
+        "train/dfl_loss",
+        "metrics/precision(B)",
+        "metrics/recall(B)",
+        "metrics/mAP50(B)",
+        "metrics/mAP50-95(B)",
+        "val/box_loss",
+        "val/cls_loss",
+        "val/dfl_loss",
+        "lr/pg0",
+        "lr/pg1",
+        "lr/pg2"
+      ],
+      "metric_columns": {
+        "precision": "metrics/precision(B)",
+        "recall": "metrics/recall(B)",
+        "map50": "metrics/mAP50(B)",
+        "map50_95": "metrics/mAP50-95(B)"
+      },
+      "config_files": [
+        "args.yaml"
+      ],
+      "issues": []
+    },
+    {
+      "path": "runs/detect/training/yolov5lu_default/results.csv",
+      "sha256": "67055f2a7ee0a208b243bbe99b004313c7d7947367d494d515ffa0ded07496e2",
+      "rows": 15,
+      "columns": [
+        "epoch",
+        "time",
+        "train/box_loss",
+        "train/cls_loss",
+        "train/dfl_loss",
+        "metrics/precision(B)",
+        "metrics/recall(B)",
+        "metrics/mAP50(B)",
+        "metrics/mAP50-95(B)",
+        "val/box_loss",
+        "val/cls_loss",
+        "val/dfl_loss",
+        "lr/pg0",
+        "lr/pg1",
+        "lr/pg2"
+      ],
+      "metric_columns": {
+        "precision": "metrics/precision(B)",
+        "recall": "metrics/recall(B)",
+        "map50": "metrics/mAP50(B)",
+        "map50_95": "metrics/mAP50-95(B)"
+      },
+      "config_files": [
+        "args.yaml"
+      ],
+      "issues": []
+    },
+    {
+      "path": "runs/detect/training/yolov5lu_e30_default/results.csv",
+      "sha256": "67ab09809a77c8fbe910b8cd84fd1d77d7054a6c4a8f99a4bac7090887759b68",
+      "rows": 30,
+      "columns": [
+        "epoch",
+        "time",
+        "train/box_loss",
+        "train/cls_loss",
+        "train/dfl_loss",
+        "metrics/precision(B)",
+        "metrics/recall(B)",
+        "metrics/mAP50(B)",
+        "metrics/mAP50-95(B)",
+        "val/box_loss",
+        "val/cls_loss",
+        "val/dfl_loss",
+        "lr/pg0",
+        "lr/pg1",
+        "lr/pg2"
+      ],
+      "metric_columns": {
+        "precision": "metrics/precision(B)",
+        "recall": "metrics/recall(B)",
+        "map50": "metrics/mAP50(B)",
+        "map50_95": "metrics/mAP50-95(B)"
+      },
+      "config_files": [
+        "args.yaml"
+      ],
+      "issues": []
+    },
+    {
+      "path": "runs/detect/training/yolov5lu_e30_sgd_aligned/results.csv",
+      "sha256": "3bc27f40e73962118333fc617f4d2e31d257d6002f8b1d96218d38d2709ea6ca",
+      "rows": 30,
+      "columns": [
+        "epoch",
+        "time",
+        "train/box_loss",
+        "train/cls_loss",
+        "train/dfl_loss",
+        "metrics/precision(B)",
+        "metrics/recall(B)",
+        "metrics/mAP50(B)",
+        "metrics/mAP50-95(B)",
+        "val/box_loss",
+        "val/cls_loss",
+        "val/dfl_loss",
+        "lr/pg0",
+        "lr/pg1",
+        "lr/pg2"
+      ],
+      "metric_columns": {
+        "precision": "metrics/precision(B)",
+        "recall": "metrics/recall(B)",
+        "map50": "metrics/mAP50(B)",
+        "map50_95": "metrics/mAP50-95(B)"
+      },
+      "config_files": [
+        "args.yaml"
+      ],
+      "issues": []
+    },
+    {
+      "path": "runs/detect/training/yolov5mu_e30_sgd_aligned/results.csv",
+      "sha256": "a2f857b9beb927468a5c1ba2618c7cb54a244872179736a889b73018252bffc0",
+      "rows": 30,
+      "columns": [
+        "epoch",
+        "time",
+        "train/box_loss",
+        "train/cls_loss",
+        "train/dfl_loss",
+        "metrics/precision(B)",
+        "metrics/recall(B)",
+        "metrics/mAP50(B)",
+        "metrics/mAP50-95(B)",
+        "val/box_loss",
+        "val/cls_loss",
+        "val/dfl_loss",
+        "lr/pg0",
+        "lr/pg1",
+        "lr/pg2"
+      ],
+      "metric_columns": {
+        "precision": "metrics/precision(B)",
+        "recall": "metrics/recall(B)",
+        "map50": "metrics/mAP50(B)",
+        "map50_95": "metrics/mAP50-95(B)"
+      },
+      "config_files": [
+        "args.yaml"
+      ],
+      "issues": []
+    },
+    {
+      "path": "runs/detect/training/yolov8l_default/results.csv",
+      "sha256": "4557d950c4387d834a1633854bd96b4dfea841eeb5d505ba6daf5e371913629c",
+      "rows": 15,
+      "columns": [
+        "epoch",
+        "time",
+        "train/box_loss",
+        "train/cls_loss",
+        "train/dfl_loss",
+        "metrics/precision(B)",
+        "metrics/recall(B)",
+        "metrics/mAP50(B)",
+        "metrics/mAP50-95(B)",
+        "val/box_loss",
+        "val/cls_loss",
+        "val/dfl_loss",
+        "lr/pg0",
+        "lr/pg1",
+        "lr/pg2"
+      ],
+      "metric_columns": {
+        "precision": "metrics/precision(B)",
+        "recall": "metrics/recall(B)",
+        "map50": "metrics/mAP50(B)",
+        "map50_95": "metrics/mAP50-95(B)"
+      },
+      "config_files": [
+        "args.yaml"
+      ],
+      "issues": []
+    },
+    {
+      "path": "runs/detect/training/yolov8l_e30_default/results.csv",
+      "sha256": "8183e59d54f281c2be85ff067cf850ff20d0a2267a7e70d3d04a73ddf815d31b",
+      "rows": 30,
+      "columns": [
+        "epoch",
+        "time",
+        "train/box_loss",
+        "train/cls_loss",
+        "train/dfl_loss",
+        "metrics/precision(B)",
+        "metrics/recall(B)",
+        "metrics/mAP50(B)",
+        "metrics/mAP50-95(B)",
+        "val/box_loss",
+        "val/cls_loss",
+        "val/dfl_loss",
+        "lr/pg0",
+        "lr/pg1",
+        "lr/pg2"
+      ],
+      "metric_columns": {
+        "precision": "metrics/precision(B)",
+        "recall": "metrics/recall(B)",
+        "map50": "metrics/mAP50(B)",
+        "map50_95": "metrics/mAP50-95(B)"
+      },
+      "config_files": [
+        "args.yaml"
+      ],
+      "issues": []
+    },
+    {
+      "path": "runs/detect/training/yolov8l_e30_sgd_aligned/results.csv",
+      "sha256": "23d3136f0854408e558ac93652ac3a8cf674c106a566ea2cc237b00615cf4732",
+      "rows": 30,
+      "columns": [
+        "epoch",
+        "time",
+        "train/box_loss",
+        "train/cls_loss",
+        "train/dfl_loss",
+        "metrics/precision(B)",
+        "metrics/recall(B)",
+        "metrics/mAP50(B)",
+        "metrics/mAP50-95(B)",
+        "val/box_loss",
+        "val/cls_loss",
+        "val/dfl_loss",
+        "lr/pg0",
+        "lr/pg1",
+        "lr/pg2"
+      ],
+      "metric_columns": {
+        "precision": "metrics/precision(B)",
+        "recall": "metrics/recall(B)",
+        "map50": "metrics/mAP50(B)",
+        "map50_95": "metrics/mAP50-95(B)"
+      },
+      "config_files": [
+        "args.yaml"
+      ],
+      "issues": []
+    },
+    {
+      "path": "runs/yolo11/dirt_binary_l_e30_default/results.csv",
+      "sha256": "90ecbba1134dbdc0eaf6011cc4fcef96eb5752518e46b4106563dd6d4977c415",
+      "rows": 30,
+      "columns": [
+        "epoch",
+        "time",
+        "train/box_loss",
+        "train/cls_loss",
+        "train/dfl_loss",
+        "metrics/precision(B)",
+        "metrics/recall(B)",
+        "metrics/mAP50(B)",
+        "metrics/mAP50-95(B)",
+        "val/box_loss",
+        "val/cls_loss",
+        "val/dfl_loss",
+        "lr/pg0",
+        "lr/pg1",
+        "lr/pg2"
+      ],
+      "metric_columns": {
+        "precision": "metrics/precision(B)",
+        "recall": "metrics/recall(B)",
+        "map50": "metrics/mAP50(B)",
+        "map50_95": "metrics/mAP50-95(B)"
+      },
+      "config_files": [
+        "args.yaml"
+      ],
+      "issues": []
+    },
+    {
+      "path": "runs/yolo11/dirt_binary_train/results.csv",
+      "sha256": "67128603cbb5df4681499bbb847616635d71431d41c647853059d661dce66541",
+      "rows": 15,
+      "columns": [
+        "epoch",
+        "time",
+        "train/box_loss",
+        "train/cls_loss",
+        "train/dfl_loss",
+        "metrics/precision(B)",
+        "metrics/recall(B)",
+        "metrics/mAP50(B)",
+        "metrics/mAP50-95(B)",
+        "val/box_loss",
+        "val/cls_loss",
+        "val/dfl_loss",
+        "lr/pg0",
+        "lr/pg1",
+        "lr/pg2"
+      ],
+      "metric_columns": {
+        "precision": "metrics/precision(B)",
+        "recall": "metrics/recall(B)",
+        "map50": "metrics/mAP50(B)",
+        "map50_95": "metrics/mAP50-95(B)"
+      },
+      "config_files": [
+        "args.yaml"
+      ],
+      "issues": []
+    },
+    {
+      "path": "runs/yolo11/dirt_multiclass_m_best_finetune/results.csv",
+      "sha256": "b12877a620ec13818cda083b053cae7a03adef51b152e3149539842051fbc7bf",
+      "rows": 15,
+      "columns": [
+        "epoch",
+        "time",
+        "train/box_loss",
+        "train/cls_loss",
+        "train/dfl_loss",
+        "metrics/precision(B)",
+        "metrics/recall(B)",
+        "metrics/mAP50(B)",
+        "metrics/mAP50-95(B)",
+        "val/box_loss",
+        "val/cls_loss",
+        "val/dfl_loss",
+        "lr/pg0",
+        "lr/pg1",
+        "lr/pg2"
+      ],
+      "metric_columns": {
+        "precision": "metrics/precision(B)",
+        "recall": "metrics/recall(B)",
+        "map50": "metrics/mAP50(B)",
+        "map50_95": "metrics/mAP50-95(B)"
+      },
+      "config_files": [
+        "args.yaml"
+      ],
+      "issues": []
+    },
+    {
+      "path": "runs/yolo26/dirt_binary_l_e30_default/results.csv",
+      "sha256": "96b4472fa5948d0574b0f5429f6c1fdfe47faba8dfdb7e7a41016ce4a6a5234d",
+      "rows": 30,
+      "columns": [
+        "epoch",
+        "time",
+        "train/box_loss",
+        "train/cls_loss",
+        "train/dfl_loss",
+        "metrics/precision(B)",
+        "metrics/recall(B)",
+        "metrics/mAP50(B)",
+        "metrics/mAP50-95(B)",
+        "val/box_loss",
+        "val/cls_loss",
+        "val/dfl_loss",
+        "lr/pg0",
+        "lr/pg1",
+        "lr/pg2"
+      ],
+      "metric_columns": {
+        "precision": "metrics/precision(B)",
+        "recall": "metrics/recall(B)",
+        "map50": "metrics/mAP50(B)",
+        "map50_95": "metrics/mAP50-95(B)"
+      },
+      "config_files": [
+        "args.yaml"
+      ],
+      "issues": []
+    },
+    {
+      "path": "runs/yolo26/dirt_binary_train/results.csv",
+      "sha256": "5223c8ab186bc4ff4e1eb74c76738b5bef4579ea91184a3ca51f5b5c57af289a",
+      "rows": 15,
+      "columns": [
+        "epoch",
+        "time",
+        "train/box_loss",
+        "train/cls_loss",
+        "train/dfl_loss",
+        "metrics/precision(B)",
+        "metrics/recall(B)",
+        "metrics/mAP50(B)",
+        "metrics/mAP50-95(B)",
+        "val/box_loss",
+        "val/cls_loss",
+        "val/dfl_loss",
+        "lr/pg0",
+        "lr/pg1",
+        "lr/pg2"
+      ],
+      "metric_columns": {
+        "precision": "metrics/precision(B)",
+        "recall": "metrics/recall(B)",
+        "map50": "metrics/mAP50(B)",
+        "map50_95": "metrics/mAP50-95(B)"
+      },
+      "config_files": [
+        "args.yaml"
+      ],
+      "issues": []
+    }
+  ],
+  "other_csv_paths": [
+    "runs/detect/test/yolo11_multiclass_test_real_new_summary.csv",
+    "runs/detect/test/yolo11_test_real_new_summary.csv"
+  ]
+}
