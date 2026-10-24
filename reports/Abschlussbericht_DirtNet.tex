@@ -1,0 +1,78 @@
+\documentclass[conference,a4paper]{IEEEtran}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage{booktabs,tabularx,graphicx,xcolor,hyperref,microtype}
+\hypersetup{hidelinks}
+\title{DirtNet: Visuelle Schmutz- und Objekterkennung\\für autonome Reinigungsroboter}
+\author{\IEEEauthorblockN{Shufang Tao, Yuxin Song und Yuyang Ren}
+\IEEEauthorblockA{Matrikelnummern: 3824652, 3820779 und 3762594}}
+\begin{document}
+\maketitle
+\begin{abstract}
+Das Projekt untersucht die bodennahe Erkennung von Schmutz und typischen Bürogegenständen auf Basis der YOLO-Familie. Ausgehend von einer YOLOv3-Reproduktion wurde eine systematische Versuchsreihe bis zu YOLO11 durchgeführt. Die stärksten synthetischen Validierungsergebnisse werden auf realen Bildern deutlich unterschritten. Für die binäre Aufgabe wird deshalb YOLO11s als praxisnahes Modell empfohlen; für die Zehnklassenaufgabe bleibt das erste YOLO11m-Modell der belastbarste Ausgangspunkt. Der Bericht fasst Konzept, Implementierung, Experimente, Grenzen und nächste Schritte zusammen.
+\end{abstract}
+\begin{IEEEkeywords}
+Objekterkennung, DirtNet, YOLO11, autonome Reinigungsroboter, Domain Shift
+\end{IEEEkeywords}
+
+\section{Einleitung und Motivation}
+Autonome Reinigungsroboter müssen nicht nur Hindernisse erkennen, sondern auch kleine, unregelmäßige und kontrastarme Verschmutzungen lokalisieren. Klassische Objektdetektoren sind dafür nur eingeschränkt vorbereitet: Schmutz besitzt keine stabile Form, Reflexionen und Bodenstrukturen erzeugen ähnliche Bildmuster, und die Kameraperspektive liegt nahe am Boden. Ziel des Projekts war daher eine reproduzierbare Detektionspipeline für \emph{dirt} und Büroobjekte sowie die Untersuchung, wie Modellgröße, Auflösung, Optimierer und Datendomäne die Generalisierung beeinflussen.
+
+\section{Literatur und Grundlagen}
+Die fachliche Referenz ist \emph{DirtNet: Visual Dirt Detection for Autonomous Cleaning Robots} (ICRA 2020). Methodisch basiert die Implementierung auf Ultralytics YOLOv3 und YOLO11. Bewertet wird mit Precision, Recall, mAP@0.5 und mAP@0.5:0.95. Während mAP@0.5 grobe korrekte Lokalisierungen belohnt, reagiert mAP@0.5:0.95 stärker auf ungenaue Boxen. Für den Roboterbetrieb sind zusätzlich Laufzeit, Fehlalarmrate und der Anteil übersehener Verschmutzungen relevant.
+
+\section{Konzept, Methoden und Implementierung}
+Die Arbeit gliedert sich in eine binäre Aufgabe (\emph{dirt} gegenüber \emph{object}) und eine Zehnklassenaufgabe mit Schmutz sowie neun Büroobjektklassen. Für Multiclass wurden 860 synthetische Trainingsbilder mit 8,626 Instanzen, 296 synthetische Validierungsbilder mit 2,962 Instanzen und 80 ausschließlich zum Testen verwendete reale Bilder mit 644 Instanzen eingesetzt. Die Klassenverteilung ist unausgeglichen: \emph{dirt} dominiert mit 5,161 Trainingsinstanzen, während beispielsweise \emph{scissors} nur 114 Instanzen besitzt.
+
+Die Daten wurden in YOLO-Annotationen konvertiert und über YAML-Dateien reproduzierbar eingebunden. Das formale Multiclass-Basismodell ist YOLO11m mit COCO-Vortraining, Eingabegröße 1024, Batchgröße 2, 30 Epochen, AMP und deterministischem Seed 0. Trainiert wurde auf einer RTX 3060 Laptop GPU mit 6 GB. Für die binären Endkandidaten wurden YOLO11s und YOLO11m bei 1280 Pixeln, SGD und 30 Epochen verglichen. Wegen des Speicherdrucks lief YOLO11m mit Batch 4, YOLO11s mit Batch 8.
+
+\section{Experimente und Auswertung}
+\subsection{Binäre Detektion}
+Auf der Validierung erreicht YOLO11m 97,4\% Precision, 96,2\% Recall, 98,3\% mAP50 und 92,3\% mAP50--95. YOLO11s liegt geringfügig darunter. Auf dem unabhängigen Realtest kehrt sich die Rangfolge jedoch um: YOLO11s erzielt 80,6\% mAP50 und 56,2\% mAP50--95 bei 10,0 ms Inferenzzeit, YOLO11m nur 77,8\% beziehungsweise 53,2\% bei 21,4 ms. YOLO11m ist präziser, übersieht aber mehr Ziele. Für den praktischen Einsatz wird daher YOLO11s empfohlen; YOLO11m bleibt das rein validierungsbasierte Auswahlmodell.
+
+\begin{table}[h]
+\centering\small
+\begin{tabular}{lrrrrr}\toprule
+Modell / Split & P & R & mAP50 & mAP50--95 & ms/Bild\\\midrule
+YOLO11s / Realtest & 0,781 & 0,772 & 0,806 & 0,562 & 10,0\\
+YOLO11m / Realtest & 0,835 & 0,704 & 0,778 & 0,532 & 21,4\\\bottomrule
+\end{tabular}
+\caption{Binäre Endmodelle auf \texttt{test\_real\_new}.}
+\end{table}
+
+\subsection{Multiclass-Basismodell}
+Das YOLO11m-Basismodell benötigte rund 84,1 Minuten. Der beste Checkpoint entstand in Epoche 29 und erreicht auf der synthetischen Validierung 0,9535 Precision, 0,9305 Recall, 0,9608 mAP50 und 0,8136 mAP50--95. Die Pipeline und die Klassenabbildung funktionieren damit zuverlässig innerhalb der synthetischen Domäne.
+
+Auf realen Bildern fallen die Werte auf 0,665 Precision, 0,776 Recall, 0,737 mAP50 und 0,554 mAP50--95. Der mAP50-Rückgang beträgt 0,224, bei mAP50--95 sogar 0,260. Besonders robust sind \emph{pens} (mAP50 0,986) und \emph{scissors} (0,922). Schwach sind \emph{other} (0,404), \emph{rulers} (0,490) und \emph{usb\_sticks} (0,520). Für \emph{dirt} werden 0,852 Precision, 0,706 Recall und 0,773 mAP50 gemessen; ungefähr 29\% der realen Schmutzinstanzen bleiben unerkannt.
+
+\begin{table}[h]
+\centering\small
+\begin{tabular}{lrrrr}\toprule
+Split & Precision & Recall & mAP50 & mAP50--95\\\midrule
+Synthetische Validierung & 0,953 & 0,930 & 0,961 & 0,814\\
+Realer Test & 0,665 & 0,776 & 0,737 & 0,554\\
+Absolute Abnahme & 0,288 & 0,154 & 0,224 & 0,260\\\bottomrule
+\end{tabular}
+\caption{Synthetic-to-real-Generaliserungslücke des Multiclass-Modells.}
+\end{table}
+
+\subsection{Fine-Tuning, Modellgröße und Laufzeit}
+Ein zusätzliches AdamW-Fine-Tuning über 15 Epochen steigerte alle synthetischen Kennzahlen, verschlechterte auf dem Realtest aber Recall (0,776 auf 0,721) und mAP50 (0,737 auf 0,726). Das bestätigt, dass weitere Optimierung auf derselben synthetischen Verteilung das Domänenproblem nicht löst.
+
+Bei YOLOv8 steigt der Validierungs-mAP50--95 mit der Modellgröße von 0,710 (Nano) über 0,796 (Small) auf 0,813 (Medium); zugleich steigt die Trainingszeit von 11,6 auf 169,7 Minuten. Mehr Kapazität hilft innerhalb der Validierungsdomäne, ist aber kein Ersatz für reale Trainingsdaten. Das Multiclass-YOLO11m benötigt insgesamt etwa 33,2 ms pro Bild und erreicht damit ungefähr 30 FPS. Eine ruhige Kameraführung und kurze Stopps in Objektnähe verbesserten im Video-Demo die Stabilität; starke Drehungen erzeugten Bewegungsunschärfe.
+
+\subsection{Einordnung und Grenzen}
+Die zentrale Fehlerquelle ist der Domänenunterschied: reale Bilder enthalten schlechte Beleuchtung, Reflexionen, Sensorrauschen, Kratzer und Materialvarianten, die in den synthetischen Daten nicht ausreichend vorkommen. Zudem enthält der Realtest keine leeren Bodenbilder. Die Fehlalarmrate im kontinuierlichen Betrieb kann daher nicht belastbar angegeben werden. Die 80 Testbilder dürfen nicht für Training oder Hyperparameterwahl wiederverwendet werden, solange kein neuer unabhängiger Realtest vorliegt.
+
+\section{Zusammenfassung und Ausblick}
+Das Projekt liefert eine reproduzierbare YOLO-Pipeline, umfangreiche Modellvergleiche und einen echtbildbasierten Generalisierungstest. Für die binäre Praxisanwendung ist YOLO11s der beste Kompromiss aus Recall, mAP und Geschwindigkeit. Für Multiclass bleibt das erste YOLO11m-Modell der empfohlene Baseline-Checkpoint; das Fine-Tuning wurde wegen schlechterer Realtest-Balance verworfen. Die wichtigste nächste Maßnahme ist nicht ein größeres Modell, sondern ein getrenntes reales Trainings- und Validierungsset. Ergänzend sollten schwierige Negativbilder, mehr Beispiele schwacher Klassen, Beleuchtungs- und Rauschaugmentation, eine klarere Definition der Klasse \emph{other} sowie schwellenwertabhängige Tests auf sauberen Böden aufgenommen werden.
+
+\section*{Literatur und Projektquellen}
+\begin{itemize}\small
+\item Bormann et al.: \emph{DirtNet: Visual Dirt Detection for Autonomous Cleaning Robots}, ICRA 2020.
+\item Ultralytics YOLOv3 Community Implementation und Ultralytics YOLO11.
+\item Projekt-Repository: \url{https://github.com/ipa-robotics-courses/2026_p02_dirt_detection}, Stand Commit \texttt{69bb7c9}.
+\item Interne Ergebnisdokumente: \texttt{docs/yolo11\_final\_experiment\_summary.md}, \texttt{docs/yolo11\_multiclass\_training\_summary.md}, \texttt{docs/yolo11\_multiclass\_real\_test\_analysis.md}, \texttt{docs/yolo11\_multiclass\_finetuning\_analysis.md}.
+\end{itemize}
+\end{document}

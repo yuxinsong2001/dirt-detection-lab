@@ -1,3 +1,4 @@
+import argparse
 from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFont
@@ -42,14 +43,18 @@ def read_labels(path: Path):
     return rows
 
 
-def select_diverse_samples(split: str, count: int = 6):
-    label_dir = DATASET / "labels" / split
+def select_diverse_samples(split: str, count: int = 6, dataset: Path = DATASET):
+    label_dir = dataset / "labels" / split
+    if not label_dir.is_dir():
+        raise FileNotFoundError(f"Label directory not found: {label_dir}")
     candidates = []
     for label_path in sorted(label_dir.glob("*.txt")):
         labels = read_labels(label_path)
         classes = {row[0] for row in labels}
         candidates.append((label_path, labels, classes))
 
+    if not candidates:
+        raise ValueError(f"No label files found in {label_dir}")
     selected = []
     covered = set()
     remaining = candidates.copy()
@@ -64,7 +69,7 @@ def select_diverse_samples(split: str, count: int = 6):
     return selected
 
 
-def make_sheet(split: str):
+def make_sheet(split: str, dataset: Path = DATASET, output: Path = OUTPUT):
     tile_width, tile_height = 480, 384
     header_height, footer_height = 38, 80
     columns, rows = 3, 2
@@ -77,8 +82,8 @@ def make_sheet(split: str):
     font = ImageFont.load_default()
     draw.text((16, 12), f"DirtNet multiclass label QA - {split}", fill="#e6edf3", font=font)
 
-    for index, (label_path, labels, _) in enumerate(select_diverse_samples(split)):
-        image_path = DATASET / "images" / split / f"{label_path.stem}.png"
+    for index, (label_path, labels, _) in enumerate(select_diverse_samples(split, dataset=dataset)):
+        image_path = dataset / "images" / split / f"{label_path.stem}.png"
         image = Image.open(image_path).convert("RGB")
         source_width, source_height = image.size
         image = image.resize((tile_width, tile_height))
@@ -114,12 +119,17 @@ def make_sheet(split: str):
         draw.rectangle((x, y, x + 14, y + 14), fill=COLORS[class_id])
         draw.text((x + 20, y + 1), f"{class_id}: {name}", fill="#e6edf3", font=font)
 
-    OUTPUT.mkdir(parents=True, exist_ok=True)
-    output_path = OUTPUT / f"{split}_samples.jpg"
+    output.mkdir(parents=True, exist_ok=True)
+    output_path = output / f"{split}_samples.jpg"
     sheet.save(output_path, quality=92)
     print(output_path)
 
 
 if __name__ == "__main__":
-    for split_name in ("train", "val", "test_real_new"):
-        make_sheet(split_name)
+    parser = argparse.ArgumentParser(description="Visualize multiclass YOLO labels.")
+    parser.add_argument("--dataset", type=Path, default=DATASET)
+    parser.add_argument("--output", type=Path, default=OUTPUT)
+    parser.add_argument("--splits", nargs="+", default=["train", "val", "test_real_new"])
+    args = parser.parse_args()
+    for split_name in args.splits:
+        make_sheet(split_name, args.dataset.expanduser().resolve(), args.output.expanduser().resolve())

@@ -31,3 +31,55 @@ runs/**/*.jpg
 *.zip
 *.tar
 *.gz
+
+# --- 模型权重文件 ---
+# 忽略官方下载的 yolov3.pt 和你自己练出来的 best.pt
+*.pt
+*.pth
+weights/
+
+# --- 训练结果与日志 ---
+# 忽略训练产生的 runs/exp1, runs/exp2 等
+/runs/
+yolov3-master/runs/
+/wandb/
+yolov3-master/wandb/
+/comet/
+yolov3-master/comet/
+*.log
+
+# --- 虚拟环境 ---
+venv/
+env/
+.conda/
+
+# 忽略 Ultralytics 运行时自动生成的本地缓存与个人配置
+.ultralytics/
+Ultralytics/
+*.ttf
+
+/ultralytics-repo/
+
+# Machine-local generated dataset configurations and virtual environment
+/cfg/local/
+/.venv/
+
+# Local tooling dependencies and temporary build artifacts
+/.codex/
+node_modules/
+/tmp/
+*.inspect.ndjson
+
+# Report render previews and superseded report exports
+/output/pdf/*.png
+/output/pdf/Abschlussbericht_DirtNet.pdf
+/output/pdf/Abschlussbericht_DirtNet_IEEE.pdf
+
+# Keep the footer-updated presentation, PDF and speaker notes
+/outputs/LabSR_BV_Final_Multiclass.pptx
+
+# Local teaching preferences, not project documentation
+/NOTES.md
+
+# Extracted third-party runtime copy (original tracked files stay tracked)
+/yolov3-master/
