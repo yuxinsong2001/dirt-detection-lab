@@ -85,3 +85,5 @@ node_modules/
 # Extracted third-party runtime copy (original tracked files stay tracked)
 /yolov3-master/
 
+# Downloaded external benchmark artifacts; provenance and extracted reports remain visible
+/experiment-analysis/data/external/
