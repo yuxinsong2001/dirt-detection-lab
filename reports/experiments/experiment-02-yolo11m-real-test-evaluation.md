@@ -127,11 +127,11 @@ Precision下降大于Recall，说明真实场景中的误检增长尤其明显�
 
 ## 10. 关键产物
 
-- [真实测试PR曲线](../runs/yolo11/dirt_multiclass_m_best_test_real/BoxPR_curve.png)
-- [F1—置信度曲线](../runs/yolo11/dirt_multiclass_m_best_test_real/BoxF1_curve.png)
-- [归一化混淆矩阵](../runs/yolo11/dirt_multiclass_m_best_test_real/confusion_matrix_normalized.png)
-- [原始计数混淆矩阵](../runs/yolo11/dirt_multiclass_m_best_test_real/confusion_matrix.png)
-- [预测样例0](../runs/yolo11/dirt_multiclass_m_best_test_real/val_batch0_pred.jpg)
-- [预测样例1](../runs/yolo11/dirt_multiclass_m_best_test_real/val_batch1_pred.jpg)
-- [预测样例2](../runs/yolo11/dirt_multiclass_m_best_test_real/val_batch2_pred.jpg)
+- [真实测试PR曲线](../../runs/yolo11/dirt_multiclass_m_best_test_real/BoxPR_curve.png)
+- [F1—置信度曲线](../../runs/yolo11/dirt_multiclass_m_best_test_real/BoxF1_curve.png)
+- [归一化混淆矩阵](../../runs/yolo11/dirt_multiclass_m_best_test_real/confusion_matrix_normalized.png)
+- [原始计数混淆矩阵](../../runs/yolo11/dirt_multiclass_m_best_test_real/confusion_matrix.png)
+- [预测样例0](../../runs/yolo11/dirt_multiclass_m_best_test_real/val_batch0_pred.jpg)
+- [预测样例1](../../runs/yolo11/dirt_multiclass_m_best_test_real/val_batch1_pred.jpg)
+- [预测样例2](../../runs/yolo11/dirt_multiclass_m_best_test_real/val_batch2_pred.jpg)
 

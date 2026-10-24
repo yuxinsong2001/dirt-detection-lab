@@ -2,12 +2,12 @@
 
 Shared YAML files keep repository defaults. Generate ignored, machine-local
 configurations when your data are stored elsewhere. Run from the repository root
-with the project virtual environment active. PyYAML is provided by Ultralytics.
+with the project virtual environment active. PyYAML is explicitly listed in requirements.txt.
 
 ```powershell
-python tools/configure_dataset.py --config cfg/dirt_binary_trainval.yaml --dataset D:/DirtNet_Project/data
-python tools/configure_dataset.py --config cfg/dirt_multiclass_trainval.yaml --dataset D:/DirtNet_Project/data/multiclass
-python tools/configure_dataset.py --config cfg/dirt_multiclass_test_real_new.yaml --dataset D:/DirtNet_Project/data/multiclass
+python scripts/configure_dataset.py --config cfg/dirt_binary_trainval.yaml --dataset D:/DirtNet_Project/data
+python scripts/configure_dataset.py --config cfg/dirt_multiclass_trainval.yaml --dataset D:/DirtNet_Project/data/multiclass
+python scripts/configure_dataset.py --config cfg/dirt_multiclass_test_real_new.yaml --dataset D:/DirtNet_Project/data/multiclass
 ```
 
 Use the printed file as the `data=` argument in your existing YOLO commands,
@@ -20,7 +20,7 @@ Relative CLI paths are resolved against the current working directory.
 The visualization tool keeps its original default and accepts explicit paths:
 
 ```powershell
-python tools/visualize_multiclass_labels.py --dataset D:/DirtNet_Project/data/multiclass --output outputs/multiclass_label_qa_local
+python scripts/visualize_multiclass_labels.py --dataset D:/DirtNet_Project/data/multiclass --output reports/figures/multiclass_label_qa_local
 ```
 
 Optional: `--splits val` processes only validation labels. Visualization output

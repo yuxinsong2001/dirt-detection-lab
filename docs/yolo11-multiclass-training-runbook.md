@@ -217,5 +217,5 @@ D:\DirtNet_Project\runs\detect\runs\yolo11\dirt_multiclass_m_e30_i1024_b2\weight
 - 逐类别指标和混淆矩阵。
 - 是否发生OOM、恢复或人工中断。
 
-另可配合仓库中的[可复现训练检查表](../reference/yolo11-reproducible-training-checklist.html)使用。
+本地个人学习资料已与项目文档分开，入口见仓库根目录的 START_HERE.md；它们不属于远端仓库的交付内容。
 

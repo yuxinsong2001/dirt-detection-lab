@@ -11,7 +11,7 @@
 
 ## 2. 数据设置
 
-数据配置：[`cfg/dirt_multiclass_trainval.yaml`](../cfg/dirt_multiclass_trainval.yaml)
+数据配置：[`cfg/dirt_multiclass_trainval.yaml`](../../cfg/dirt_multiclass_trainval.yaml)
 
 | 划分 | 图像数 | 标注框数 | 用途 |
 |---|---:|---:|---|
@@ -40,7 +40,7 @@
 | seed | 0 |
 | deterministic | True |
 
-完整有效参数见[`args.yaml`](../runs/detect/runs/yolo11/dirt_multiclass_m_e30_i1024_b2/args.yaml)。本次由于启动时工作目录和相对 `project` 组合，结果保存到了嵌套目录；这不影响模型数值结果。
+完整有效参数见[`args.yaml`](../../runs/detect/runs/yolo11/dirt_multiclass_m_e30_i1024_b2/args.yaml)。本次由于启动时工作目录和相对 `project` 组合，结果保存到了嵌套目录；这不影响模型数值结果。
 
 ## 4. 训练结果
 
@@ -76,7 +76,7 @@
 
 ## 6. 收敛与过拟合判断
 
-[`results.png`](../runs/detect/runs/yolo11/dirt_multiclass_m_e30_i1024_b2/results.png)显示：
+[`results.png`](../../runs/detect/runs/yolo11/dirt_multiclass_m_e30_i1024_b2/results.png)显示：
 
 - 三项训练损失持续下降。
 - 验证损失总体下降，后期仅有小幅波动。
@@ -93,12 +93,14 @@
 
 ## 8. 关键产物
 
-- [最佳权重best.pt](../runs/detect/runs/yolo11/dirt_multiclass_m_e30_i1024_b2/weights/best.pt)
-- [最后权重last.pt](../runs/detect/runs/yolo11/dirt_multiclass_m_e30_i1024_b2/weights/last.pt)
-- [逐轮结果results.csv](../runs/detect/runs/yolo11/dirt_multiclass_m_e30_i1024_b2/results.csv)
-- [训练曲线](../runs/detect/runs/yolo11/dirt_multiclass_m_e30_i1024_b2/results.png)
-- [PR曲线](../runs/detect/runs/yolo11/dirt_multiclass_m_e30_i1024_b2/BoxPR_curve.png)
-- [归一化混淆矩阵](../runs/detect/runs/yolo11/dirt_multiclass_m_e30_i1024_b2/confusion_matrix_normalized.png)
+目录整理说明：原 best.pt 在本机以 best_dirt_multiclass_11m_e30_i1024_b2.pt 保存；已核对其 SHA-256 与本报告记录一致。链接采用现存文件名，未改动权重内容。
+
+- [最佳权重best.pt](../../runs/detect/runs/yolo11/dirt_multiclass_m_e30_i1024_b2/weights/best_dirt_multiclass_11m_e30_i1024_b2.pt)
+- [最后权重last.pt](../../runs/detect/runs/yolo11/dirt_multiclass_m_e30_i1024_b2/weights/last.pt)
+- [逐轮结果results.csv](../../runs/detect/runs/yolo11/dirt_multiclass_m_e30_i1024_b2/results.csv)
+- [训练曲线](../../runs/detect/runs/yolo11/dirt_multiclass_m_e30_i1024_b2/results.png)
+- [PR曲线](../../runs/detect/runs/yolo11/dirt_multiclass_m_e30_i1024_b2/BoxPR_curve.png)
+- [归一化混淆矩阵](../../runs/detect/runs/yolo11/dirt_multiclass_m_e30_i1024_b2/confusion_matrix_normalized.png)
 
 `best.pt` SHA256：`EFC9968722A442C3A6D95D4B6186D62C0A3FE3FDC322439DA2D02D409D153790`
 

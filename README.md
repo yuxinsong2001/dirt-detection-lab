@@ -1,5 +1,8 @@
 # Vision-Based Dirt Detection for Cleaning Robots
 
+Utilities, experimental evidence and reports are organized separately.
+The old utility commands remain available through compatibility launchers.
+
 ## Project Overview
 
 This course project reproduces and extends the vision-based floor dirt detection
@@ -30,16 +33,21 @@ the experiments can be reproduced locally.
 .
 |-- binary_full.yaml                 # Binary dataset configuration
 |-- multiclass_small.yaml            # Ten-class dataset configuration
-|-- dataset_convert_to_yolo_binary.py
+|-- dataset_convert_to_yolo_binary.py # Compatibility launcher
 |-- datasets/                         # Local datasets; only layout READMEs are tracked
-|-- docs/                             # Experiment process and analysis
+|-- docs/                             # Setup and execution guides
 |-- runs/                             # Tracked metrics and plots; weights are ignored
-|-- tools/                            # Dataset visualization utilities
+|-- scripts/                          # Original project utility implementations
+|-- tools/                            # Compatibility launchers for old commands
+|-- reports/                          # PDF reports, presentations and analysis outputs
+|-- logs/                             # Runtime text logs (ignored)
+|-- archive/                          # Preserved source downloads
 |-- weights/                          # Pretrained and trained .pt files; ignored by Git
 `-- requirements.txt
 ```
 
 Run all commands below from the repository root.
+
 
 ## Environment
 
@@ -56,6 +64,19 @@ yolo checks
 
 The requirements file contains only the dependencies used directly by this
 repository. Ultralytics installs its runtime stack, including PyTorch and OpenCV.
+PyYAML is listed explicitly because the configuration utility imports it directly.
+The historical PDF generator has optional dependencies:
+
+```powershell
+pip install -r requirements-reporting.txt
+```
+
+ReportLab is not needed for training or the experiment inventory. The existing
+local `.venv` currently imports Ultralytics from the nested `ultralytics-repo`
+checkout; moving that checkout would break that environment. A fresh installation
+may instead use the package installed by pip. Do not recreate the existing virtual
+environment merely to tidy the folder list.
+
 When a specific CUDA-enabled PyTorch build is required, install that build first
 for the local GPU and then run the requirements command above.
 
@@ -64,6 +85,13 @@ and Ultralytics 8.4.74. Exact PyTorch and CUDA builds may be adapted to the loca
 GPU and driver.
 
 ## Dataset Setup
+
+**Local setup note:** the root YAML files describe the shared `datasets/` layout,
+but those train/validation/test directories are not populated on this machine.
+The existing local data are under `data/`. Use the ignored `cfg/local/` YAMLs for
+those data, following [the local-path guide](docs/local-data-paths.md). Replace the
+`data=` argument with the appropriate local YAML; do not assume that the local
+small dataset is interchangeable with the documented full dataset.
 
 ### Binary Dataset
 
@@ -86,13 +114,13 @@ place the source files under `datasets/images/` as described by the converter an
 run:
 
 ```powershell
-python dataset_convert_to_yolo_binary.py --profile full
+python scripts/dataset_convert_to_yolo_binary.py --profile full
 ```
 
 Use `--clear` only when the existing converted output should be regenerated:
 
 ```powershell
-python dataset_convert_to_yolo_binary.py --profile full --clear
+python scripts/dataset_convert_to_yolo_binary.py --profile full --clear
 ```
 
 The converter maps dirt to class 0 and all office objects to class 1. Synthetic
@@ -122,34 +150,39 @@ weights/yolo11m.pt
 Alternatively, replace `weights/yolo11s.pt` or `weights/yolo11m.pt` in a command
 with `yolo11s.pt` or `yolo11m.pt` and let Ultralytics download the checkpoint.
 
+The current `weights/` directory is empty and not every historical run retains its
+checkpoint. Commands below are reproduction recipes, not a claim that all required
+data and trained weights already exist locally. Do not regenerate anything merely
+to validate repository organization.
+
 ## Reproduce Binary Training
 
 The final binary comparison uses SGD, 1280-pixel input, and 30 epochs:
 
 ```powershell
-yolo detect train model=weights/yolo11s.pt data=binary_full.yaml imgsz=1280 batch=8 epochs=30 optimizer=SGD name=yolo11s_final_img1280_sgd_e30_b8
+yolo detect train model=weights/yolo11s.pt data=binary_full.yaml imgsz=1280 batch=8 epochs=30 optimizer=SGD name=yolo11s_final_img1280_sgd_e30_b8 project=runs/detect/training
 ```
 
 ```powershell
-yolo detect train model=weights/yolo11m.pt data=binary_full.yaml imgsz=1280 batch=4 epochs=30 optimizer=SGD name=yolo11m_final_img1280_sgd_e30_b4
+yolo detect train model=weights/yolo11m.pt data=binary_full.yaml imgsz=1280 batch=4 epochs=30 optimizer=SGD name=yolo11m_final_img1280_sgd_e30_b4 project=runs/detect/training
 ```
 
 Batch size 4 is used for YOLO11m because the 1280-pixel batch-8 configuration
 exceeded the available GPU memory. Ultralytics validates on the `val` split during
-training and saves outputs under `runs/detect/<name>/`.
+training and saves outputs under `runs/detect/training/<name>/`.
 
 ## Reproduce Multiclass Training
 
 Train the YOLO11m multiclass baseline:
 
 ```powershell
-yolo detect train model=weights/yolo11m.pt data=multiclass_small.yaml imgsz=1024 batch=2 epochs=30 workers=0 name=yolo11m_multiclass_e30_i1024_b2
+yolo detect train model=weights/yolo11m.pt data=multiclass_small.yaml imgsz=1024 batch=2 epochs=30 workers=0 name=yolo11m_multiclass_e30_i1024_b2 project=runs/detect/training
 ```
 
 Fine-tune the best baseline checkpoint with the tested conservative schedule:
 
 ```powershell
-yolo detect train model=runs/detect/yolo11m_multiclass_e30_i1024_b2/weights/best.pt data=multiclass_small.yaml imgsz=1024 batch=2 epochs=15 optimizer=AdamW lr0=0.0001 lrf=0.1 cos_lr=True mosaic=0 patience=5 workers=0 name=yolo11m_multiclass_finetune_adamw_cos_e15_i1024_b2
+yolo detect train model=runs/detect/training/yolo11m_multiclass_e30_i1024_b2/weights/best.pt data=multiclass_small.yaml imgsz=1024 batch=2 epochs=15 optimizer=AdamW lr0=0.0001 lrf=0.1 cos_lr=True mosaic=0 patience=5 workers=0 name=yolo11m_multiclass_finetune_adamw_cos_e15_i1024_b2 project=runs/detect/training
 ```
 
 `workers=0` was used for stable Windows data loading. It may be increased on a
@@ -161,15 +194,15 @@ The `test` split in each root YAML points to `test_real_new`. These commands pla
 the evaluation output under `runs/detect/test/`:
 
 ```powershell
-yolo detect val model=runs/detect/yolo11s_final_img1280_sgd_e30_b8/weights/best.pt data=binary_full.yaml imgsz=1280 split=test project=test name=yolo11s_final_img1280_sgd_e30_b8_test_real_new
+yolo detect val model=runs/detect/training/yolo11s_final_img1280_sgd_e30_b8/weights/best.pt data=binary_full.yaml imgsz=1280 split=test project=runs/detect/test name=yolo11s_final_img1280_sgd_e30_b8_test_real_new
 ```
 
 ```powershell
-yolo detect val model=runs/detect/yolo11m_final_img1280_sgd_e30_b4/weights/best.pt data=binary_full.yaml imgsz=1280 split=test project=test name=yolo11m_final_img1280_sgd_e30_b4_test_real_new
+yolo detect val model=runs/detect/training/yolo11m_final_img1280_sgd_e30_b4/weights/best.pt data=binary_full.yaml imgsz=1280 split=test project=runs/detect/test name=yolo11m_final_img1280_sgd_e30_b4_test_real_new
 ```
 
 ```powershell
-yolo detect val model=runs/detect/yolo11m_multiclass_e30_i1024_b2/weights/best.pt data=multiclass_small.yaml imgsz=1024 split=test project=test name=yolo11m_multiclass_e30_i1024_b2_test_real_new
+yolo detect val model=runs/detect/training/yolo11m_multiclass_e30_i1024_b2/weights/best.pt data=multiclass_small.yaml imgsz=1024 split=test project=runs/detect/test name=yolo11m_multiclass_e30_i1024_b2_test_real_new
 ```
 
 To evaluate the fine-tuned multiclass model, replace the model path and run name
@@ -180,7 +213,7 @@ with the corresponding fine-tuning directory.
 Run prediction on an image directory or video with a trained checkpoint:
 
 ```powershell
-yolo detect predict model=runs/detect/yolo11s_final_img1280_sgd_e30_b8/weights/best.pt source=path/to/images_or_video imgsz=1280 project=predict name=binary_demo
+yolo detect predict model=runs/detect/training/yolo11s_final_img1280_sgd_e30_b8/weights/best.pt source=path/to/images_or_video imgsz=1280 project=runs/detect/predict name=binary_demo
 ```
 
 ## Key Results
@@ -214,15 +247,31 @@ mAP50.
 
 ## Experiment Documentation
 
-- [Binary model and optimizer screening](docs/yolo11_binary_optimization.md)
-- [Resolution and training strategy](docs/yolo11_resolution_and_training_strategy.md)
-- [Final binary experiments](docs/yolo11_final_experiment_summary.md)
-- [Real-test diagnostic exploration](docs/yolo11_real_test_extra_exploration.md)
-- [Multiclass training summary](docs/yolo11_multiclass_training_summary.md)
-- [Multiclass fine-tuning analysis](docs/yolo11_multiclass_finetuning_analysis.md)
-- [Multiclass real-test analysis](docs/yolo11_multiclass_real_test_analysis.md)
-- [Final report](<Vision-based Dirt Detection for Cleaning Robot.pdf>)
-- [Final presentation](LabSR+BV_Final_2026_p2_Tao_Song_Ren.pdf)
+- [All reports](reports/README.md)
+- [Binary model and optimizer screening](reports/experiments/yolo11_binary_optimization.md)
+- [Resolution and training strategy](reports/experiments/yolo11_resolution_and_training_strategy.md)
+- [Final binary experiments](reports/experiments/yolo11_final_experiment_summary.md)
+- [Real-test diagnostic exploration](reports/experiments/yolo11_real_test_extra_exploration.md)
+- [Multiclass training summary](reports/experiments/yolo11_multiclass_training_summary.md)
+- [Multiclass fine-tuning analysis](reports/experiments/yolo11_multiclass_finetuning_analysis.md)
+- [Multiclass real-test analysis](reports/experiments/yolo11_multiclass_real_test_analysis.md)
+- [Final report](<reports/pdf/Vision-based Dirt Detection for Cleaning Robot.pdf>)
+- [Final presentation](reports/presentations/LabSR+BV_Final_2026_p2_Tao_Song_Ren.pdf)
+
+## Utilities and validation
+
+See [scripts/README.md](scripts/README.md) for utility behavior and safe help
+commands. Original tools/*.py commands and the root data-converter command remain
+available through compatibility launchers, without duplicate implementations.
+
+```powershell
+python -B -m unittest discover -s scripts/tests -p test_compatibility.py -v
+```
+
+These checks do not train, convert datasets or regenerate reports. Nothing is
+automatically staged or pushed. Before a future commit, include moved experimental
+evidence together with old-path removals. Run ignore rules now allow lightweight
+CSV/YAML/PNG/MP4 records while excluding weights and JPEG preview batches.
 
 ## Limitations
 

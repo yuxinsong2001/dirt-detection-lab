@@ -19,7 +19,7 @@ The fine-tuning run started from the best checkpoint of `yolo11m_multiclass_e30_
 | AMP | enabled |
 | Training distribution | same synthetic train and validation splits as the baseline |
 
-The complete effective settings are stored in [`args.yaml`](../runs/detect/yolo11m_multiclass_finetune_adamw_cos_e15_i1024_b2/args.yaml).
+The complete effective settings are stored in [`args.yaml`](../../runs/detect/training/yolo11m_multiclass_finetune_adamw_cos_e15_i1024_b2/args.yaml).
 
 ## Synthetic Validation Results
 
@@ -85,9 +85,9 @@ Future improvements should prioritize real-domain training and validation images
 
 ## Result Artifacts
 
-- [Fine-tuning metrics](../runs/detect/yolo11m_multiclass_finetune_adamw_cos_e15_i1024_b2/results.csv)
-- [Fine-tuning curves](../runs/detect/yolo11m_multiclass_finetune_adamw_cos_e15_i1024_b2/results.png)
-- [Fine-tuning precision-recall curves](../runs/detect/yolo11m_multiclass_finetune_adamw_cos_e15_i1024_b2/BoxPR_curve.png)
-- [Real-test summary CSV](../runs/detect/test/yolo11_multiclass_test_real_new_summary.csv)
-- [Fine-tuned real-test precision-recall curves](../runs/detect/test/yolo11m_multiclass_finetune_adamw_cos_e15_i1024_b2_test_real_new/BoxPR_curve.png)
-- [Fine-tuned real-test normalized confusion matrix](../runs/detect/test/yolo11m_multiclass_finetune_adamw_cos_e15_i1024_b2_test_real_new/confusion_matrix_normalized.png)
+- [Fine-tuning metrics](../../runs/detect/training/yolo11m_multiclass_finetune_adamw_cos_e15_i1024_b2/results.csv)
+- [Fine-tuning curves](../../runs/detect/training/yolo11m_multiclass_finetune_adamw_cos_e15_i1024_b2/results.png)
+- [Fine-tuning precision-recall curves](../../runs/detect/training/yolo11m_multiclass_finetune_adamw_cos_e15_i1024_b2/BoxPR_curve.png)
+- [Real-test summary CSV](../../runs/detect/test/yolo11_multiclass_test_real_new_summary.csv)
+- [Fine-tuned real-test precision-recall curves](../../runs/detect/test/yolo11m_multiclass_finetune_adamw_cos_e15_i1024_b2_test_real_new/BoxPR_curve.png)
+- [Fine-tuned real-test normalized confusion matrix](../../runs/detect/test/yolo11m_multiclass_finetune_adamw_cos_e15_i1024_b2_test_real_new/confusion_matrix_normalized.png)

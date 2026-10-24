@@ -121,11 +121,11 @@ The 80 test images must not be reused for training or parameter selection. If th
 
 ## Result Artifacts
 
-- [Test summary CSV](../runs/detect/test/yolo11_multiclass_test_real_new_summary.csv)
-- [Precision-recall curves](../runs/detect/test/yolo11m_multiclass_e30_i1024_b2_test_real_new/BoxPR_curve.png)
-- [F1-confidence curves](../runs/detect/test/yolo11m_multiclass_e30_i1024_b2_test_real_new/BoxF1_curve.png)
-- [Normalized confusion matrix](../runs/detect/test/yolo11m_multiclass_e30_i1024_b2_test_real_new/confusion_matrix_normalized.png)
-- [Count confusion matrix](../runs/detect/test/yolo11m_multiclass_e30_i1024_b2_test_real_new/confusion_matrix.png)
+- [Test summary CSV](../../runs/detect/test/yolo11_multiclass_test_real_new_summary.csv)
+- [Precision-recall curves](../../runs/detect/test/yolo11m_multiclass_e30_i1024_b2_test_real_new/BoxPR_curve.png)
+- [F1-confidence curves](../../runs/detect/test/yolo11m_multiclass_e30_i1024_b2_test_real_new/BoxF1_curve.png)
+- [Normalized confusion matrix](../../runs/detect/test/yolo11m_multiclass_e30_i1024_b2_test_real_new/confusion_matrix_normalized.png)
+- [Count confusion matrix](../../runs/detect/test/yolo11m_multiclass_e30_i1024_b2_test_real_new/confusion_matrix.png)
 
 ## Conclusion
 

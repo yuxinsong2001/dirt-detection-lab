@@ -1,0 +1,3 @@
+# Optional PDF-generation dependencies; the main project does not require these.
+-r requirements.txt
+reportlab

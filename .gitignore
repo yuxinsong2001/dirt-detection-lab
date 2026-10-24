@@ -21,13 +21,6 @@ datasets/multiclass/*
 datasets/multiclass/small/*
 !datasets/multiclass/small/README.md
 
-*.pt
-*.pth
-*.onnx
-*.engine
-runs/**/weights/
-runs/**/*.jpg
-
 *.zip
 *.tar
 *.gz
@@ -36,17 +29,27 @@ runs/**/*.jpg
 # 忽略官方下载的 yolov3.pt 和你自己练出来的 best.pt
 *.pt
 *.pth
+*.onnx
+*.engine
 weights/
 
 # --- 训练结果与日志 ---
 # 忽略训练产生的 runs/exp1, runs/exp2 等
-/runs/
+# Ignore new run outputs by default, but retain the selected lightweight
+# evidence formats below. Reopening directories is required for Git negations.
+/runs/**
+!/runs/**/
+!/runs/**/*.csv
+!/runs/**/*.yaml
+!/runs/**/*.png
+!/runs/**/*.mp4
+!/runs/**/README.md
+/runs/**/weights/
 yolov3-master/runs/
 /wandb/
 yolov3-master/wandb/
 /comet/
 yolov3-master/comet/
-*.log
 
 # --- 虚拟环境 ---
 venv/
@@ -71,15 +74,14 @@ node_modules/
 *.inspect.ndjson
 
 # Report render previews and superseded report exports
-/output/pdf/*.png
-/output/pdf/Abschlussbericht_DirtNet.pdf
-/output/pdf/Abschlussbericht_DirtNet_IEEE.pdf
+/reports/archive/
 
 # Keep the footer-updated presentation, PDF and speaker notes
-/outputs/LabSR_BV_Final_Multiclass.pptx
+# Older presentation exports are preserved under reports/archive/.
 
 # Local teaching preferences, not project documentation
 /NOTES.md
 
 # Extracted third-party runtime copy (original tracked files stay tracked)
 /yolov3-master/
+

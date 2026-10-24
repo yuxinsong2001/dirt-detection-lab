@@ -35,7 +35,7 @@ The model predicts the following classes:
 
 The training labels are imbalanced. The `dirt` class contains 5,161 instances, while `scissors` contains 114 instances and both `rulers` and `tapes` contain 162 instances.
 
-Dataset configuration: [`multiclass_small.yaml`](../multiclass_small.yaml)
+Dataset configuration: [`multiclass_small.yaml`](../../multiclass_small.yaml)
 
 ## Training Setup
 
@@ -56,7 +56,7 @@ Dataset configuration: [`multiclass_small.yaml`](../multiclass_small.yaml)
 | Seed | 0 |
 | Deterministic mode | enabled |
 
-The complete effective configuration is stored in [`args.yaml`](../runs/detect/yolo11m_multiclass_e30_i1024_b2/args.yaml).
+The complete effective configuration is stored in [`args.yaml`](../../runs/detect/training/yolo11m_multiclass_e30_i1024_b2/args.yaml).
 
 ## Validation Results
 
@@ -92,7 +92,7 @@ The training loss continued to decrease in the final epoch, but the validation b
 
 ## Convergence Assessment
 
-The [training curves](../runs/detect/yolo11m_multiclass_e30_i1024_b2/results.png) show that:
+The [training curves](../../runs/detect/training/yolo11m_multiclass_e30_i1024_b2/results.png) show that:
 
 - all three training losses decreased throughout training;
 - validation losses decreased overall with only minor late-stage variation;
@@ -103,10 +103,10 @@ Thirty epochs is therefore a suitable baseline. Additional synthetic-only epochs
 
 ## Result Artifacts
 
-- [Per-epoch metrics](../runs/detect/yolo11m_multiclass_e30_i1024_b2/results.csv)
-- [Training curves](../runs/detect/yolo11m_multiclass_e30_i1024_b2/results.png)
-- [Precision-recall curves](../runs/detect/yolo11m_multiclass_e30_i1024_b2/BoxPR_curve.png)
-- [Normalized confusion matrix](../runs/detect/yolo11m_multiclass_e30_i1024_b2/confusion_matrix_normalized.png)
+- [Per-epoch metrics](../../runs/detect/training/yolo11m_multiclass_e30_i1024_b2/results.csv)
+- [Training curves](../../runs/detect/training/yolo11m_multiclass_e30_i1024_b2/results.png)
+- [Precision-recall curves](../../runs/detect/training/yolo11m_multiclass_e30_i1024_b2/BoxPR_curve.png)
+- [Normalized confusion matrix](../../runs/detect/training/yolo11m_multiclass_e30_i1024_b2/confusion_matrix_normalized.png)
 
 Model weights are intentionally excluded from Git. The selected checkpoint SHA-256 is `EFC9968722A442C3A6D95D4B6186D62C0A3FE3FDC322439DA2D02D409D153790`.
 
