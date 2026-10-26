@@ -1,0 +1,6 @@
+
+# Reproducible local SQLite databases and sidecars
+/data/database/
+
+# Local Python installation metadata
+*.egg-info/

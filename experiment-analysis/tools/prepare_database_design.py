@@ -65,7 +65,7 @@ def run(module_root, output):
     writer.writerow(['input_file', 'field_path', 'observed_type', 'observed_missing', 'observed_value', 'proposed_destination'])
     writer.writerows(inventory)
 
-    design = (Path(__file__).resolve().parent / 'templates/database-design/storage-design.md').read_text(encoding='utf-8')
+    design = (Path(__file__).resolve().parents[1] / 'docs/database/storage-design-template.md').read_text(encoding='utf-8')
 
     checks = []
     mapping = []
