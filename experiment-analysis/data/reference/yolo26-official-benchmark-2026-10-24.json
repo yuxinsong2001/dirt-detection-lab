@@ -1,0 +1,25 @@
+{
+  "source_url": "https://docs.ultralytics.com/models/yolo26/",
+  "recipe_url": "https://docs.ultralytics.com/guides/yolo26-training-recipe/",
+  "accessed_date": "2026-10-24",
+  "collection_method": "Manually transcribed N/S rows and protocol notes from the official Detection (COCO) table; checked against the page on the accessed date. Not pinned to the v8.4.0 assets.",
+  "task": "detect",
+  "dataset": "COCO",
+  "split": "val",
+  "image_size_px": 640,
+  "map_unit": "percentage_points_0_to_100",
+  "latency_head": "one-to-one NMS-free (nms=False)",
+  "cpu_backend": "ONNX",
+  "cpu_hardware": null,
+  "gpu_backend": "TensorRT10",
+  "gpu_hardware": "NVIDIA T4",
+  "timing_batch_size": null,
+  "timing_precision": null,
+  "timing_scope": "Not fully specified in the model-page table; do not assume complete application latency.",
+  "spread_definition": "The table reports plus/minus values without defining the statistic in this section; not treated as confidence intervals.",
+  "complexity_scope": "Fused model after Conv/BatchNorm folding and removal of the unused detection branch; not the full checkpoint training architecture.",
+  "models": [
+    {"model": "YOLO26n", "map50_95_standard_pct": 40.9, "map50_95_e2e_pct": 40.1, "cpu_onnx_ms": 38.9, "cpu_reported_spread_ms": 0.7, "t4_tensorrt10_ms": 1.7, "t4_reported_spread_ms": 0.0, "params_m": 2.4, "flops_b": 5.5},
+    {"model": "YOLO26s", "map50_95_standard_pct": 48.6, "map50_95_e2e_pct": 47.8, "cpu_onnx_ms": 87.2, "cpu_reported_spread_ms": 0.9, "t4_tensorrt10_ms": 2.5, "t4_reported_spread_ms": 0.0, "params_m": 9.5, "flops_b": 20.9}
+  ]
+}

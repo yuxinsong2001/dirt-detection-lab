@@ -86,4 +86,8 @@ node_modules/
 /yolov3-master/
 
 # Downloaded external benchmark artifacts; provenance and extracted reports remain visible
+!/experiment-analysis/data/
+/experiment-analysis/data/*
+!/experiment-analysis/data/reference/
+!/experiment-analysis/data/reference/*.json
 /experiment-analysis/data/external/
