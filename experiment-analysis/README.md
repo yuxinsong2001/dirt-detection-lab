@@ -9,6 +9,8 @@
 ```text
 experiment-analysis/
   README.md                 ← 总入口：本模块是什么、如何使用
+  docs/                     ← 正式设计说明与目录约定
+  src/experiment_analysis/  ← 核心源码
   tools/
     inventory_experiments.py← 已实现：实验清点程序
     inspect_official_checkpoint.py ← 已实现：新下载官方文件并提取历史记录
@@ -22,6 +24,7 @@ experiment-analysis/
     official/               ← 官方记录的配置、逐轮指标和来源
   data/external/            ← 官方下载文件，仅本地缓存，不上传
   data/reference/           ← 带日期与来源的官方性能表转录
+  data/database/            ← 本地SQLite数据库，不上传
   local-work-notes/          ← 个人讲解，不上传
     README.md               ← 学习说明入口
     steps/                  ← 本次逐步讲解、中德术语、面试追问
@@ -39,7 +42,7 @@ experiment-analysis/
 
 [N/S性能比较与总表](reports/official/performance-n-s-2026-10-24/README.md)：比较各自官方优化后的发布方案，允许训练参数不同。普通检测、端到端检测和旧checkpoint保存指标分别保留；官方测速细节不完整的部分标为未知。已完成文档口径检查，未独立运行评估。
 
-尚未开始：独立复现评估、数据库、性能图表和交互页面。
+已实现SQLite建表与官方N/S记录导入。尚未实现：独立复现评估、性能图表和交互页面。
 
 ## 从仓库根目录运行
 
@@ -69,7 +72,7 @@ tools、tests 和 reports 是可纳入 Git 的项目交付内容；提交和推�
 
 ## Database design preparation (step 1)
 
-`tools/prepare_database_design.py` reads the existing 10 N/S JSON/CSV inputs, inventories fields, checks selected CSV/JSON values and source associations, and maps 34 proposed measurements. It generates `field-inventory.csv`, `mapping-verification.md`, and `storage-design.md`. The design is a manually authored template under `tools/templates/database-design/`; the tool does not infer a schema or create a database. Personal Chinese learning notes remain in the ignored `local-work-notes/` directory and are not embedded in the formal tool.
+`tools/prepare_database_design.py` reads the existing 10 N/S JSON/CSV inputs, inventories fields, checks selected CSV/JSON values and source associations, and maps 34 proposed measurements. It generates `field-inventory.csv`, `mapping-verification.md`, and `storage-design.md`. The design is a manually authored template under `docs/database/storage-design-template.md`; the tool does not infer a schema or create a database. Personal Chinese learning notes remain in the ignored `local-work-notes/` directory and are not embedded in the formal tool.
 
 From the repository root:
 
@@ -78,4 +81,95 @@ python -B experiment-analysis/tools/prepare_database_design.py --help
 python -B experiment-analysis/tools/prepare_database_design.py --output experiment-analysis/reports/database-design/new-snapshot
 ```
 
-The default output is the existing `reports/database-design/2026-10-26` snapshot, so a normal rerun refuses to overwrite it. Use a new output directory to reproduce the report. `--module-root` can select an alternative input module directory. All input checks happen before the output directory is created. Checks do not establish database transaction, deduplication, or SQL correctness; these features remain unimplemented. This tool currently targets the fixed N/S snapshot, not arbitrary model collections.
+The default output is the existing `reports/database-design/2026-10-26` snapshot, so a normal rerun refuses to overwrite it. Use a new output directory to reproduce the report. `--module-root` can select an alternative input module directory. All input checks happen before the output directory is created. Checks do not establish database transaction, deduplication, or SQL correctness; those behaviors are tested separately by the database importer. This tool currently targets the fixed N/S snapshot, not arbitrary model collections.
+## Python package and SQLite import
+
+New database functionality is implemented in `src/experiment_analysis/`:
+
+- `records.py`: read the ten input files once, check pinned asset associations,
+  numeric values, protocol, units, dates, and every derived CSV column.
+- `database.py`: five-table schema, schema identity/version and foreign keys.
+- `importing.py`: parameterized inserts, immutable source identities, repeat
+  conflict checks and a single transaction covering schema and all records.
+- `cli.py`: argument parsing and concise import summaries.
+- `queries.py`: read-only model listing, details and source-aware filtering.
+- `tools/import_official_records.py`: thin wrapper calling the package.
+
+Install with the Python environment you use for running the tool and tests:
+
+```powershell
+python -m pip install -e ./experiment-analysis
+python -B experiment-analysis/tools/import_official_records.py --help
+python -B experiment-analysis/tools/import_official_records.py --module-root experiment-analysis --database experiment-analysis/data/database/official-records-v1.sqlite
+python -B -m unittest discover -s experiment-analysis/tests -p "test_*.py" -v
+```
+
+The installed `dirtnet-import-records` command accepts the same arguments.
+The SQLite implementation uses the Python standard library only. No training,
+network requests, checkpoint loading or inference are performed by import.
+
+First import creates 2 models, 3 sources, 7 conditions, 34 measurements and 2
+configuration objects (226 keys). Repeating identical inputs adds zero rows;
+each row is compared with the input and conflicts are rejected, never overwritten.
+New source snapshots coexist. Each source records input file SHA256/path/size;
+the returned summary also records the derived validation CSV digest. Source keys
+exclude import time. A changed input path is a new source identity by design.
+
+Validation runs before opening SQLite. Schema and data changes run in one
+transaction; failure rolls them back. A failed first database transaction can
+leave an empty SQLite file, with no committed tables or records. Existing
+unrelated or unsupported-version databases are rejected. Schema version 1 has
+no migration support yet. Concurrent writes serialize with BEGIN IMMEDIATE;
+SQLite's default lock timeout applies.
+
+Published standard/e2e accuracy, CPU/T4 timing, and deployment complexity use
+separate conditions. Checkpoint saved metrics retain original ratio values and
+unverified head status, with dataset/split NULL and training-context hints in
+notes. Unknown timing conditions remain NULL. No external evaluation is claimed.
+
+Generated databases under data/database are ignored; code, tests and a brief
+verification report are reviewable in Git. Do not commit local learning notes.
+The 2026-10-26 design report remains a historical design snapshot; this section
+describes the implemented behavior.
+
+Directory responsibilities and current design references: [documentation index](docs/README.md).
+
+## Read-only queries and model selection
+
+Install/reinstall the editable package in the environment used to run commands:
+
+```powershell
+python -m pip install -e ./experiment-analysis
+python -B experiment-analysis/tools/query_official_records.py --database experiment-analysis/data/database/official-records-v1.sqlite list
+python -B experiment-analysis/tools/query_official_records.py --database experiment-analysis/data/database/official-records-v1.sqlite show YOLO26s
+python -B experiment-analysis/tools/query_official_records.py --database experiment-analysis/data/database/official-records-v1.sqlite filter --min-map 45 --max-latency-ms 3 --device t4
+```
+
+The installed `dirtnet-query-records` command accepts the same arguments. Output
+is JSON on stdout; an empty selection is `[]` with exit code 0. Bad arguments,
+unknown model, missing database and unsupported schema return an error and a
+nonzero exit code. Querying a missing path never creates a database.
+
+`list` returns model identities and counts. `show` returns original metric
+values/units with per-record conditions and source fingerprints, all source
+evidence/manifests and checkpoint-linked configurations. It never attributes
+checkpoint configurations to webpage measurements.
+
+`filter` requires a finite percent threshold in 0..100 and positive finite
+latency in ms. `--device t4` uses NVIDIA T4/TensorRT10; `--device cpu` uses ONNX
+and reports unknown CPU hardware. Only detect/COCO/val/640 published accuracy
+is eligible. Accuracy and latency must share model, source, task, image size
+and detection mode. Unknown batch/precision are returned as null with an
+explicit unknown_conditions list. Values are publisher-reported, not local
+runtime guarantees.
+
+`--mode` defaults to end_to_end; standard is accepted but yields no results
+when no matching standard-mode timing exists. There is no automatic fallback
+to another mode, source or device. By default all matching source snapshots
+are returned as separate rows; use `--source-date YYYY-MM-DD` and/or
+`--source-key FINGERPRINT` for exact selection. Dates are not silently treated
+as a request for the latest source.
+
+Connections use SQLite URI mode=ro and query_only=ON, with a read transaction
+for consistent multi-statement inspection. The query implementation does not
+open write connections or migrate/create tables.

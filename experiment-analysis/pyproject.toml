@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dirtnet-experiment-analysis"
+version = "0.1.0"
+description = "Official model record analysis for the DirtNet project"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+dirtnet-import-records = "experiment_analysis.cli:import_main"
+dirtnet-query-records = "experiment_analysis.cli:query_main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

@@ -1,0 +1,18 @@
+[
+  {
+    "name": "YOLO26n",
+    "publisher": "Ultralytics",
+    "family": "YOLO26",
+    "task": "detect",
+    "source_count": 2,
+    "measurement_count": 17
+  },
+  {
+    "name": "YOLO26s",
+    "publisher": "Ultralytics",
+    "family": "YOLO26",
+    "task": "detect",
+    "source_count": 2,
+    "measurement_count": 17
+  }
+]

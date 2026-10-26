@@ -1,0 +1,27 @@
+[
+  {
+    "model": "YOLO26s",
+    "map50_95_pct": 47.8,
+    "latency_ms": 2.5,
+    "latency_reported_spread_ms": 0.0,
+    "spread_definition": "The table reports plus/minus values without defining the statistic in this section; not treated as confidence intervals.",
+    "source_key": "bd7c062924d5e94110ed0836fb13cef87486f33c280d7062543e9cb5f96ffa04",
+    "source_url": "https://docs.ultralytics.com/models/yolo26/",
+    "source_date": "2026-10-24",
+    "dataset": "COCO",
+    "split": "val",
+    "image_size_px": 640,
+    "detection_mode": "end_to_end",
+    "backend": "TensorRT10",
+    "hardware": "NVIDIA T4",
+    "batch_size": null,
+    "precision": null,
+    "timing_scope": "Not fully specified in the model-page table; do not assume complete application latency.",
+    "timing_evidence_status": "publisher_reported",
+    "unknown_conditions": [
+      "batch_size",
+      "precision"
+    ],
+    "comparison_note": "Publisher-reported values; unknown timing conditions remain unknown. Not a local performance guarantee."
+  }
+]
