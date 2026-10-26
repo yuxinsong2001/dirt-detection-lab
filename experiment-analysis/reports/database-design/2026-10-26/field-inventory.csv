@@ -1,0 +1,386 @@
+﻿input_file,field_path,observed_type,observed_missing,observed_value,proposed_destination
+data/reference/yolo26-official-benchmark-2026-10-24.json,source_url,str,False,"""https://docs.ultralytics.com/models/yolo26/""",sources.evidence_json
+data/reference/yolo26-official-benchmark-2026-10-24.json,recipe_url,str,False,"""https://docs.ultralytics.com/guides/yolo26-training-recipe/""",sources.evidence_json
+data/reference/yolo26-official-benchmark-2026-10-24.json,accessed_date,str,False,"""2026-10-24""",sources.evidence_json
+data/reference/yolo26-official-benchmark-2026-10-24.json,collection_method,str,False,"""Manually transcribed N/S rows and protocol notes from the official Detection (COCO) table; checked against the page on the accessed date. Not pinned to the v8.4.0 assets.""",sources.evidence_json
+data/reference/yolo26-official-benchmark-2026-10-24.json,task,str,False,"""detect""",evaluation_conditions (only where applicable)
+data/reference/yolo26-official-benchmark-2026-10-24.json,dataset,str,False,"""COCO""",evaluation_conditions (only where applicable)
+data/reference/yolo26-official-benchmark-2026-10-24.json,split,str,False,"""val""",evaluation_conditions (only where applicable)
+data/reference/yolo26-official-benchmark-2026-10-24.json,image_size_px,int,False,640,evaluation_conditions (only where applicable)
+data/reference/yolo26-official-benchmark-2026-10-24.json,map_unit,str,False,"""percentage_points_0_to_100""",sources.evidence_json
+data/reference/yolo26-official-benchmark-2026-10-24.json,latency_head,str,False,"""one-to-one NMS-free (nms=False)""",evaluation_conditions (only where applicable)
+data/reference/yolo26-official-benchmark-2026-10-24.json,cpu_backend,str,False,"""ONNX""",evaluation_conditions (only where applicable)
+data/reference/yolo26-official-benchmark-2026-10-24.json,cpu_hardware,NoneType,True,null,evaluation_conditions (only where applicable)
+data/reference/yolo26-official-benchmark-2026-10-24.json,gpu_backend,str,False,"""TensorRT10""",evaluation_conditions (only where applicable)
+data/reference/yolo26-official-benchmark-2026-10-24.json,gpu_hardware,str,False,"""NVIDIA T4""",evaluation_conditions (only where applicable)
+data/reference/yolo26-official-benchmark-2026-10-24.json,timing_batch_size,NoneType,True,null,evaluation_conditions (only where applicable)
+data/reference/yolo26-official-benchmark-2026-10-24.json,timing_precision,NoneType,True,null,evaluation_conditions (only where applicable)
+data/reference/yolo26-official-benchmark-2026-10-24.json,timing_scope,str,False,"""Not fully specified in the model-page table; do not assume complete application latency.""",evaluation_conditions (only where applicable)
+data/reference/yolo26-official-benchmark-2026-10-24.json,spread_definition,str,False,"""The table reports plus/minus values without defining the statistic in this section; not treated as confidence intervals.""",sources.evidence_json
+data/reference/yolo26-official-benchmark-2026-10-24.json,complexity_scope,str,False,"""Fused model after Conv/BatchNorm folding and removal of the unused detection branch; not the full checkpoint training architecture.""",evaluation_conditions (only where applicable)
+data/reference/yolo26-official-benchmark-2026-10-24.json,models[0].model,str,False,"""YOLO26n""",models.name
+data/reference/yolo26-official-benchmark-2026-10-24.json,models[0].map50_95_standard_pct,float,False,40.9,measurements; model field selects models.name
+data/reference/yolo26-official-benchmark-2026-10-24.json,models[0].map50_95_e2e_pct,float,False,40.1,measurements; model field selects models.name
+data/reference/yolo26-official-benchmark-2026-10-24.json,models[0].cpu_onnx_ms,float,False,38.9,measurements; model field selects models.name
+data/reference/yolo26-official-benchmark-2026-10-24.json,models[0].cpu_reported_spread_ms,float,False,0.7,measurements; model field selects models.name
+data/reference/yolo26-official-benchmark-2026-10-24.json,models[0].t4_tensorrt10_ms,float,False,1.7,measurements; model field selects models.name
+data/reference/yolo26-official-benchmark-2026-10-24.json,models[0].t4_reported_spread_ms,float,False,0.0,measurements; model field selects models.name
+data/reference/yolo26-official-benchmark-2026-10-24.json,models[0].params_m,float,False,2.4,measurements; model field selects models.name
+data/reference/yolo26-official-benchmark-2026-10-24.json,models[0].flops_b,float,False,5.5,measurements; model field selects models.name
+data/reference/yolo26-official-benchmark-2026-10-24.json,models[1].model,str,False,"""YOLO26s""",models.name
+data/reference/yolo26-official-benchmark-2026-10-24.json,models[1].map50_95_standard_pct,float,False,48.6,measurements; model field selects models.name
+data/reference/yolo26-official-benchmark-2026-10-24.json,models[1].map50_95_e2e_pct,float,False,47.8,measurements; model field selects models.name
+data/reference/yolo26-official-benchmark-2026-10-24.json,models[1].cpu_onnx_ms,float,False,87.2,measurements; model field selects models.name
+data/reference/yolo26-official-benchmark-2026-10-24.json,models[1].cpu_reported_spread_ms,float,False,0.9,measurements; model field selects models.name
+data/reference/yolo26-official-benchmark-2026-10-24.json,models[1].t4_tensorrt10_ms,float,False,2.5,measurements; model field selects models.name
+data/reference/yolo26-official-benchmark-2026-10-24.json,models[1].t4_reported_spread_ms,float,False,0.0,measurements; model field selects models.name
+data/reference/yolo26-official-benchmark-2026-10-24.json,models[1].params_m,float,False,9.5,measurements; model field selects models.name
+data/reference/yolo26-official-benchmark-2026-10-24.json,models[1].flops_b,float,False,20.9,measurements; model field selects models.name
+reports/official/performance-n-s-2026-10-24/performance_summary.csv,model,CSV text,False,"[""YOLO26n"", ""YOLO26s""]",cross-check only; do not import a second copy of authoritative JSON values
+reports/official/performance-n-s-2026-10-24/performance_summary.csv,map50_95_standard_pct,CSV text,False,"[""40.9"", ""48.6""]",cross-check only; do not import a second copy of authoritative JSON values
+reports/official/performance-n-s-2026-10-24/performance_summary.csv,map50_95_e2e_pct,CSV text,False,"[""40.1"", ""47.8""]",cross-check only; do not import a second copy of authoritative JSON values
+reports/official/performance-n-s-2026-10-24/performance_summary.csv,cpu_onnx_ms,CSV text,False,"[""38.9"", ""87.2""]",cross-check only; do not import a second copy of authoritative JSON values
+reports/official/performance-n-s-2026-10-24/performance_summary.csv,cpu_reported_spread_ms,CSV text,False,"[""0.7"", ""0.9""]",cross-check only; do not import a second copy of authoritative JSON values
+reports/official/performance-n-s-2026-10-24/performance_summary.csv,t4_tensorrt10_ms,CSV text,False,"[""1.7"", ""2.5""]",cross-check only; do not import a second copy of authoritative JSON values
+reports/official/performance-n-s-2026-10-24/performance_summary.csv,t4_reported_spread_ms,CSV text,False,"[""0.0"", ""0.0""]",cross-check only; do not import a second copy of authoritative JSON values
+reports/official/performance-n-s-2026-10-24/performance_summary.csv,params_m,CSV text,False,"[""2.4"", ""9.5""]",cross-check only; do not import a second copy of authoritative JSON values
+reports/official/performance-n-s-2026-10-24/performance_summary.csv,flops_b,CSV text,False,"[""5.5"", ""20.9""]",cross-check only; do not import a second copy of authoritative JSON values
+reports/official/performance-n-s-2026-10-24/performance_summary.csv,task,CSV text,False,"[""detect"", ""detect""]",cross-check only; do not import a second copy of authoritative JSON values
+reports/official/performance-n-s-2026-10-24/performance_summary.csv,dataset,CSV text,False,"[""COCO"", ""COCO""]",cross-check only; do not import a second copy of authoritative JSON values
+reports/official/performance-n-s-2026-10-24/performance_summary.csv,split,CSV text,False,"[""val"", ""val""]",cross-check only; do not import a second copy of authoritative JSON values
+reports/official/performance-n-s-2026-10-24/performance_summary.csv,image_size_px,CSV text,False,"[""640"", ""640""]",cross-check only; do not import a second copy of authoritative JSON values
+reports/official/performance-n-s-2026-10-24/performance_summary.csv,latency_head,CSV text,False,"[""one-to-one NMS-free (nms=False)"", ""one-to-one NMS-free (nms=False)""]",cross-check only; do not import a second copy of authoritative JSON values
+reports/official/performance-n-s-2026-10-24/performance_summary.csv,cpu_hardware,CSV text,True,"["""", """"]",cross-check only; do not import a second copy of authoritative JSON values
+reports/official/performance-n-s-2026-10-24/performance_summary.csv,gpu_hardware,CSV text,False,"[""NVIDIA T4"", ""NVIDIA T4""]",cross-check only; do not import a second copy of authoritative JSON values
+reports/official/performance-n-s-2026-10-24/performance_summary.csv,timing_batch_size,CSV text,True,"["""", """"]",cross-check only; do not import a second copy of authoritative JSON values
+reports/official/performance-n-s-2026-10-24/performance_summary.csv,timing_precision,CSV text,True,"["""", """"]",cross-check only; do not import a second copy of authoritative JSON values
+reports/official/performance-n-s-2026-10-24/performance_summary.csv,checkpoint_saved_map50_95_ratio,CSV text,False,"[""0.40116"", ""0.47769""]",cross-check only; do not import a second copy of authoritative JSON values
+reports/official/performance-n-s-2026-10-24/performance_summary.csv,checkpoint_saved_map50_95_pct,CSV text,False,"[""40.116"", ""47.769""]",cross-check only; do not import a second copy of authoritative JSON values
+reports/official/performance-n-s-2026-10-24/performance_summary.csv,checkpoint_saved_head,CSV text,False,"[""not_verified_do_not_merge_with_published_modes"", ""not_verified_do_not_merge_with_published_modes""]",cross-check only; do not import a second copy of authoritative JSON values
+reports/official/performance-n-s-2026-10-24/performance_summary.csv,checkpoint_coco_epochs,CSV text,False,"[""245"", ""70""]",cross-check only; do not import a second copy of authoritative JSON values
+reports/official/performance-n-s-2026-10-24/performance_summary.csv,checkpoint_lr0,CSV text,False,"[""0.0054"", ""0.00038""]",cross-check only; do not import a second copy of authoritative JSON values
+reports/official/performance-n-s-2026-10-24/performance_summary.csv,checkpoint_mosaic,CSV text,False,"[""0.90863"", ""0.99182""]",cross-check only; do not import a second copy of authoritative JSON values
+reports/official/performance-n-s-2026-10-24/performance_summary.csv,checkpoint_metrics_file,CSV text,False,"[""reports/official/yolo26n-v8.4.0/saved_metrics.json"", ""reports/official/yolo26s-v8.4.0/saved_metrics.json""]",cross-check only; do not import a second copy of authoritative JSON values
+reports/official/performance-n-s-2026-10-24/performance_summary.csv,checkpoint_sha256,CSV text,False,"[""9b09cc8bf347f0fc8a5f7657480587f25db09b34bf33b0652110fb03a8ad4fef"", ""646f8bc3fe0a656803d95c294f7852321748cb29d13466a1af8862e2db384a1b""]",cross-check only; do not import a second copy of authoritative JSON values
+reports/official/performance-n-s-2026-10-24/performance_summary.csv,benchmark_source_url,CSV text,False,"[""https://docs.ultralytics.com/models/yolo26/"", ""https://docs.ultralytics.com/models/yolo26/""]",cross-check only; do not import a second copy of authoritative JSON values
+reports/official/performance-n-s-2026-10-24/performance_summary.csv,benchmark_accessed_date,CSV text,False,"[""2026-10-24"", ""2026-10-24""]",cross-check only; do not import a second copy of authoritative JSON values
+reports/official/yolo26n-v8.4.0/source.json,publisher,str,False,"""Ultralytics""",sources.evidence_json / metadata_json
+reports/official/yolo26n-v8.4.0/source.json,repository,str,False,"""https://github.com/ultralytics/assets""",sources.evidence_json / metadata_json
+reports/official/yolo26n-v8.4.0/source.json,release_tag,str,False,"""v8.4.0""",sources.evidence_json / metadata_json
+reports/official/yolo26n-v8.4.0/source.json,release_url,str,False,"""https://github.com/ultralytics/assets/releases/tag/v8.4.0""",sources.evidence_json / metadata_json
+reports/official/yolo26n-v8.4.0/source.json,release_api,str,False,"""https://api.github.com/repos/ultralytics/assets/releases/tags/v8.4.0""",sources.evidence_json / metadata_json
+reports/official/yolo26n-v8.4.0/source.json,release_published_at,str,False,"""2026-01-13T22:56:46Z""",sources.evidence_json / metadata_json
+reports/official/yolo26n-v8.4.0/source.json,asset_name,str,False,"""yolo26n.pt""",sources.evidence_json / metadata_json
+reports/official/yolo26n-v8.4.0/source.json,asset_id,int,False,340096055,sources.evidence_json / metadata_json
+reports/official/yolo26n-v8.4.0/source.json,asset_updated_at,str,False,"""2026-01-13T19:59:21Z""",sources.evidence_json / metadata_json
+reports/official/yolo26n-v8.4.0/source.json,download_url,str,False,"""https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo26n.pt""",sources.evidence_json / metadata_json
+reports/official/yolo26n-v8.4.0/source.json,size_bytes,int,False,5544453,sources.evidence_json / metadata_json
+reports/official/yolo26n-v8.4.0/source.json,sha256,str,False,"""9b09cc8bf347f0fc8a5f7657480587f25db09b34bf33b0652110fb03a8ad4fef""",sources.evidence_json / metadata_json
+reports/official/yolo26n-v8.4.0/source.json,checksum_matches_official_digest,bool,False,true,sources.evidence_json / metadata_json
+reports/official/yolo26n-v8.4.0/source.json,retrieved_at_utc,str,False,"""2026-10-24T15:39:10.399436+00:00""",sources.evidence_json / metadata_json
+reports/official/yolo26n-v8.4.0/source.json,documentation_url,str,False,"""https://docs.ultralytics.com/guides/yolo26-training-recipe/""",sources.evidence_json / metadata_json
+reports/official/yolo26n-v8.4.0/source.json,checkpoint_version,str,False,"""8.3.222""",sources.evidence_json / metadata_json
+reports/official/yolo26n-v8.4.0/source.json,checkpoint_git.root,str,False,"""/home/lq/codes/ultralytics""",sources.evidence_json / metadata_json
+reports/official/yolo26n-v8.4.0/source.json,checkpoint_git.branch,str,False,"""exp-main""",sources.evidence_json / metadata_json
+reports/official/yolo26n-v8.4.0/source.json,checkpoint_git.commit,str,False,"""cb13d5f9cfbd6f299da3620c625f81d721dc2849""",sources.evidence_json / metadata_json
+reports/official/yolo26n-v8.4.0/source.json,checkpoint_git.origin,str,False,"""https://github.com/ultralytics/ultralytics.git""",sources.evidence_json / metadata_json
+reports/official/yolo26n-v8.4.0/source.json,scope,str,False,"""One publisher-provided checkpoint; not a controlled parameter sweep""",sources.evidence_json / metadata_json
+reports/official/yolo26n-v8.4.0/source.json,operations_performed[0],str,False,"""download""",sources.evidence_json / metadata_json
+reports/official/yolo26n-v8.4.0/source.json,operations_performed[1],str,False,"""checksum verification""",sources.evidence_json / metadata_json
+reports/official/yolo26n-v8.4.0/source.json,operations_performed[2],str,False,"""saved metadata extraction""",sources.evidence_json / metadata_json
+reports/official/yolo26n-v8.4.0/source.json,operations_not_performed[0],str,False,"""training""",sources.evidence_json / metadata_json
+reports/official/yolo26n-v8.4.0/source.json,operations_not_performed[1],str,False,"""inference""",sources.evidence_json / metadata_json
+reports/official/yolo26n-v8.4.0/source.json,operations_not_performed[2],str,False,"""validation""",sources.evidence_json / metadata_json
+reports/official/yolo26n-v8.4.0/source.json,operations_not_performed[3],str,False,"""tensor reconstruction""",sources.evidence_json / metadata_json
+reports/official/yolo26n-v8.4.0/training_config.json,task,str,False,"""detect""",training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,mode,str,False,"""train""",training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,model,str,False,"""yolo26n-objv1-150.pt""",training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,data,str,False,"""/home/lq/codes/ultralytics/ultralytics/cfg/datasets/coco.yaml""",training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,epochs,int,False,245,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,time,NoneType,True,null,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,patience,int,False,100,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,batch,int,False,128,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,imgsz,int,False,640,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,save,bool,False,true,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,save_period,int,False,-1,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,cache,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,device,str,False,"""5""",training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,workers,int,False,8,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,project,str,False,"""tune-yolo26n-objv1-coco""",training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,name,str,False,"""train31""",training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,exist_ok,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,pretrained,bool,False,true,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,optimizer,str,False,"""MuSGD""",training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,verbose,bool,False,true,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,seed,int,False,0,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,deterministic,bool,False,true,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,single_cls,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,rect,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,cos_lr,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,close_mosaic,int,False,10,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,resume,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,amp,bool,False,true,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,fraction,float,False,1.0,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,profile,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,freeze,NoneType,True,null,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,multi_scale,float,False,0.0,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,compile,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,overlap_mask,bool,False,true,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,mask_ratio,int,False,4,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,dropout,float,False,0.0,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,val,bool,False,true,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,split,str,False,"""val""",training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,save_json,bool,False,true,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,conf,NoneType,True,null,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,iou,float,False,0.7,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,max_det,int,False,300,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,half,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,dnn,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,plots,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,source,NoneType,True,null,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,vid_stride,int,False,1,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,stream_buffer,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,visualize,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,augment,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,agnostic_nms,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,classes,NoneType,True,null,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,retina_masks,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,embed,NoneType,True,null,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,show,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,save_frames,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,save_txt,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,save_conf,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,save_crop,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,show_labels,bool,False,true,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,show_conf,bool,False,true,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,show_boxes,bool,False,true,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,line_width,NoneType,True,null,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,format,str,False,"""torchscript""",training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,keras,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,optimize,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,int8,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,dynamic,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,simplify,bool,False,true,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,opset,NoneType,True,null,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,workspace,NoneType,True,null,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,nms,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,lr0,float,False,0.0054,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,lrf,float,False,0.04952,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,momentum,float,False,0.94676,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,weight_decay,float,False,0.00064,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,warmup_epochs,float,False,0.98124,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,warmup_momentum,float,False,0.6576,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,warmup_bias_lr,float,False,0.08114,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,o2m,float,False,1.0,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,muon_w,float,False,0.52782,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,sgd_w,float,False,0.6737,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,cls_w,float,False,2.7371,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,stride_ratio,float,False,1.0,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,detach_epoch,int,False,10,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,topk,int,False,8,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,end2end,bool,False,true,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,box,float,False,5.62767,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,cls,float,False,0.56099,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,dfl,float,False,9.03871,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,pose,float,False,12.0,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,kobj,float,False,1.0,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,nbs,int,False,64,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,hsv_h,float,False,0.01373,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,hsv_s,float,False,0.64481,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,hsv_v,float,False,0.56565,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,degrees,float,False,1.11032,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,translate,float,False,0.07105,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,scale,float,False,0.56232,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,shear,float,False,1.46386,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,perspective,float,False,0.00011,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,flipud,float,False,0.05854,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,fliplr,float,False,0.60571,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,bgr,float,False,0.10567,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,mosaic,float,False,0.90863,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,mixup,float,False,0.01216,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,cutmix,float,False,0.0,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,copy_paste,float,False,0.07504,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,copy_paste_mode,str,False,"""flip""",training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,auto_augment,str,False,"""randaugment""",training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,erasing,float,False,0.4,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,cfg,NoneType,True,null,training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/training_config.json,tracker,str,False,"""botsort.yaml""",training_configs.config_json (preserve original key/type)
+reports/official/yolo26n-v8.4.0/saved_metrics.json,metrics/precision(B),float,False,0.64948,"measurements (raw key, value and explicit unit)"
+reports/official/yolo26n-v8.4.0/saved_metrics.json,metrics/recall(B),float,False,0.50734,"measurements (raw key, value and explicit unit)"
+reports/official/yolo26n-v8.4.0/saved_metrics.json,metrics/mAP50(B),float,False,0.55715,"measurements (raw key, value and explicit unit)"
+reports/official/yolo26n-v8.4.0/saved_metrics.json,metrics/mAP50-95(B),float,False,0.40116,"measurements (raw key, value and explicit unit)"
+reports/official/yolo26n-v8.4.0/saved_metrics.json,metrics/mAP_small(B),float,False,0.1968,"measurements (raw key, value and explicit unit)"
+reports/official/yolo26n-v8.4.0/saved_metrics.json,metrics/mAP_medium(B),float,False,0.44133,"measurements (raw key, value and explicit unit)"
+reports/official/yolo26n-v8.4.0/saved_metrics.json,metrics/mAP_large(B),float,False,0.58232,"measurements (raw key, value and explicit unit)"
+reports/official/yolo26n-v8.4.0/saved_metrics.json,val/box_loss,float,False,0.99458,"measurements (raw key, value and explicit unit)"
+reports/official/yolo26n-v8.4.0/saved_metrics.json,val/cls_loss,float,False,1.63686,"measurements (raw key, value and explicit unit)"
+reports/official/yolo26n-v8.4.0/saved_metrics.json,val/dfl_loss,float,False,0.06102,"measurements (raw key, value and explicit unit)"
+reports/official/yolo26n-v8.4.0/saved_metrics.json,fitness,float,False,0.41676,"measurements (raw key, value and explicit unit)"
+reports/official/yolo26n-v8.4.0/checkpoint_metadata.json,git.root,str,False,"""/home/lq/codes/ultralytics""",sources.evidence_json / metadata_json
+reports/official/yolo26n-v8.4.0/checkpoint_metadata.json,git.branch,str,False,"""exp-main""",sources.evidence_json / metadata_json
+reports/official/yolo26n-v8.4.0/checkpoint_metadata.json,git.commit,str,False,"""cb13d5f9cfbd6f299da3620c625f81d721dc2849""",sources.evidence_json / metadata_json
+reports/official/yolo26n-v8.4.0/checkpoint_metadata.json,git.origin,str,False,"""https://github.com/ultralytics/ultralytics.git""",sources.evidence_json / metadata_json
+reports/official/yolo26n-v8.4.0/checkpoint_metadata.json,date,str,False,"""2025-12-15T06:36:05.381708""",sources.evidence_json / metadata_json
+reports/official/yolo26n-v8.4.0/checkpoint_metadata.json,version,str,False,"""8.3.222""",sources.evidence_json / metadata_json
+reports/official/yolo26n-v8.4.0/checkpoint_metadata.json,epoch,int,False,-1,sources.evidence_json / metadata_json
+reports/official/yolo26n-v8.4.0/checkpoint_metadata.json,license,str,False,"""AGPL-3.0 (https://ultralytics.com/license)""",sources.evidence_json / metadata_json
+reports/official/yolo26s-v8.4.0/source.json,publisher,str,False,"""Ultralytics""",sources.evidence_json / metadata_json
+reports/official/yolo26s-v8.4.0/source.json,repository,str,False,"""https://github.com/ultralytics/assets""",sources.evidence_json / metadata_json
+reports/official/yolo26s-v8.4.0/source.json,release_tag,str,False,"""v8.4.0""",sources.evidence_json / metadata_json
+reports/official/yolo26s-v8.4.0/source.json,release_url,str,False,"""https://github.com/ultralytics/assets/releases/tag/v8.4.0""",sources.evidence_json / metadata_json
+reports/official/yolo26s-v8.4.0/source.json,release_api,str,False,"""https://api.github.com/repos/ultralytics/assets/releases/tags/v8.4.0""",sources.evidence_json / metadata_json
+reports/official/yolo26s-v8.4.0/source.json,release_published_at,str,False,"""2026-01-13T22:56:46Z""",sources.evidence_json / metadata_json
+reports/official/yolo26s-v8.4.0/source.json,asset_name,str,False,"""yolo26s.pt""",sources.evidence_json / metadata_json
+reports/official/yolo26s-v8.4.0/source.json,asset_id,int,False,340096060,sources.evidence_json / metadata_json
+reports/official/yolo26s-v8.4.0/source.json,asset_updated_at,str,False,"""2026-01-13T19:59:22Z""",sources.evidence_json / metadata_json
+reports/official/yolo26s-v8.4.0/source.json,download_url,str,False,"""https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo26s.pt""",sources.evidence_json / metadata_json
+reports/official/yolo26s-v8.4.0/source.json,size_bytes,int,False,20422725,sources.evidence_json / metadata_json
+reports/official/yolo26s-v8.4.0/source.json,sha256,str,False,"""646f8bc3fe0a656803d95c294f7852321748cb29d13466a1af8862e2db384a1b""",sources.evidence_json / metadata_json
+reports/official/yolo26s-v8.4.0/source.json,checksum_matches_official_digest,bool,False,true,sources.evidence_json / metadata_json
+reports/official/yolo26s-v8.4.0/source.json,retrieved_at_utc,str,False,"""2026-10-24T16:33:56.954961+00:00""",sources.evidence_json / metadata_json
+reports/official/yolo26s-v8.4.0/source.json,documentation_url,str,False,"""https://docs.ultralytics.com/guides/yolo26-training-recipe/""",sources.evidence_json / metadata_json
+reports/official/yolo26s-v8.4.0/source.json,checkpoint_version,str,False,"""8.3.222""",sources.evidence_json / metadata_json
+reports/official/yolo26s-v8.4.0/source.json,checkpoint_git.root,str,False,"""/home/lq/codes/ultralytics""",sources.evidence_json / metadata_json
+reports/official/yolo26s-v8.4.0/source.json,checkpoint_git.branch,NoneType,True,null,sources.evidence_json / metadata_json
+reports/official/yolo26s-v8.4.0/source.json,checkpoint_git.commit,str,False,"""557e95b99c24c5b0d4eb5973d5d54a20a799566a""",sources.evidence_json / metadata_json
+reports/official/yolo26s-v8.4.0/source.json,checkpoint_git.origin,str,False,"""https://github.com/ultralytics/ultralytics.git""",sources.evidence_json / metadata_json
+reports/official/yolo26s-v8.4.0/source.json,scope,str,False,"""One publisher-provided checkpoint; not a controlled parameter sweep""",sources.evidence_json / metadata_json
+reports/official/yolo26s-v8.4.0/source.json,operations_performed[0],str,False,"""download""",sources.evidence_json / metadata_json
+reports/official/yolo26s-v8.4.0/source.json,operations_performed[1],str,False,"""checksum verification""",sources.evidence_json / metadata_json
+reports/official/yolo26s-v8.4.0/source.json,operations_performed[2],str,False,"""saved metadata extraction""",sources.evidence_json / metadata_json
+reports/official/yolo26s-v8.4.0/source.json,operations_not_performed[0],str,False,"""training""",sources.evidence_json / metadata_json
+reports/official/yolo26s-v8.4.0/source.json,operations_not_performed[1],str,False,"""inference""",sources.evidence_json / metadata_json
+reports/official/yolo26s-v8.4.0/source.json,operations_not_performed[2],str,False,"""validation""",sources.evidence_json / metadata_json
+reports/official/yolo26s-v8.4.0/source.json,operations_not_performed[3],str,False,"""tensor reconstruction""",sources.evidence_json / metadata_json
+reports/official/yolo26s-v8.4.0/training_config.json,task,str,False,"""detect""",training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,mode,str,False,"""train""",training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,model,str,False,"""yolo26s-objv1-150.pt""",training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,data,str,False,"""/home/lq/codes/ultralytics/ultralytics/cfg/datasets/coco.yaml""",training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,epochs,int,False,70,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,time,NoneType,True,null,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,patience,int,False,100,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,batch,int,False,128,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,imgsz,int,False,640,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,save,bool,False,true,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,save_period,int,False,-1,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,cache,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,device,str,False,"""3""",training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,workers,int,False,8,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,project,str,False,"""YOLO26""",training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,name,str,False,"""YOLO26s-best-hyp-x-epochs70-mixup005-scale09""",training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,exist_ok,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,pretrained,bool,False,true,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,optimizer,str,False,"""MuSGD""",training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,verbose,bool,False,true,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,seed,int,False,0,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,deterministic,bool,False,true,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,single_cls,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,rect,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,cos_lr,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,close_mosaic,int,False,10,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,resume,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,amp,bool,False,true,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,fraction,float,False,1.0,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,profile,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,freeze,NoneType,True,null,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,multi_scale,float,False,0.0,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,compile,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,overlap_mask,bool,False,true,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,mask_ratio,int,False,4,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,dropout,float,False,0.0,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,val,bool,False,true,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,split,str,False,"""val""",training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,save_json,bool,False,true,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,conf,NoneType,True,null,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,iou,float,False,0.7,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,max_det,int,False,300,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,half,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,dnn,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,plots,bool,False,true,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,source,NoneType,True,null,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,vid_stride,int,False,1,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,stream_buffer,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,visualize,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,augment,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,agnostic_nms,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,classes,NoneType,True,null,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,retina_masks,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,embed,NoneType,True,null,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,show,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,save_frames,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,save_txt,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,save_conf,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,save_crop,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,show_labels,bool,False,true,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,show_conf,bool,False,true,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,show_boxes,bool,False,true,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,line_width,NoneType,True,null,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,format,str,False,"""torchscript""",training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,keras,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,optimize,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,int8,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,dynamic,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,simplify,bool,False,true,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,opset,NoneType,True,null,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,workspace,NoneType,True,null,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,nms,bool,False,false,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,lr0,float,False,0.00038,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,lrf,float,False,0.88219,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,momentum,float,False,0.94751,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,weight_decay,float,False,0.00027,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,warmup_epochs,float,False,0.98745,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,warmup_momentum,float,False,0.54064,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,warmup_bias_lr,float,False,0.05684,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,o2m,float,False,0.70518,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,muon_w,float,False,0.4355,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,sgd_w,float,False,0.47908,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,cls_w,float,False,3.48357,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,stride_ratio,float,False,1.0,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,detach_epoch,int,False,10,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,topk,int,False,5,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,end2end,bool,False,true,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,box,float,False,9.83241,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,cls,float,False,0.64896,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,dfl,float,False,0.95824,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,pose,float,False,12.0,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,kobj,float,False,1.0,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,nbs,int,False,64,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,hsv_h,float,False,0.01315,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,hsv_s,float,False,0.35348,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,hsv_v,float,False,0.19383,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,degrees,float,False,0.00012,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,translate,float,False,0.27484,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,scale,float,False,0.9,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,shear,float,False,0.00136,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,perspective,float,False,0.00074,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,flipud,float,False,0.00653,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,fliplr,float,False,0.30393,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,bgr,float,False,0.0,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,mosaic,float,False,0.99182,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,mixup,float,False,0.05,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,cutmix,float,False,0.00082,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,copy_paste,float,False,0.40413,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,copy_paste_mode,str,False,"""flip""",training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,auto_augment,str,False,"""randaugment""",training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,erasing,float,False,0.4,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,cfg,NoneType,True,null,training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/training_config.json,tracker,str,False,"""botsort.yaml""",training_configs.config_json (preserve original key/type)
+reports/official/yolo26s-v8.4.0/saved_metrics.json,metrics/precision(B),float,False,0.69674,"measurements (raw key, value and explicit unit)"
+reports/official/yolo26s-v8.4.0/saved_metrics.json,metrics/recall(B),float,False,0.5811,"measurements (raw key, value and explicit unit)"
+reports/official/yolo26s-v8.4.0/saved_metrics.json,metrics/mAP50(B),float,False,0.64598,"measurements (raw key, value and explicit unit)"
+reports/official/yolo26s-v8.4.0/saved_metrics.json,metrics/mAP50-95(B),float,False,0.47769,"measurements (raw key, value and explicit unit)"
+reports/official/yolo26s-v8.4.0/saved_metrics.json,metrics/mAP_small(B),float,False,0.28974,"measurements (raw key, value and explicit unit)"
+reports/official/yolo26s-v8.4.0/saved_metrics.json,metrics/mAP_medium(B),float,False,0.52532,"measurements (raw key, value and explicit unit)"
+reports/official/yolo26s-v8.4.0/saved_metrics.json,metrics/mAP_large(B),float,False,0.64496,"measurements (raw key, value and explicit unit)"
+reports/official/yolo26s-v8.4.0/saved_metrics.json,val/box_loss,float,False,1.50982,"measurements (raw key, value and explicit unit)"
+reports/official/yolo26s-v8.4.0/saved_metrics.json,val/cls_loss,float,False,1.55169,"measurements (raw key, value and explicit unit)"
+reports/official/yolo26s-v8.4.0/saved_metrics.json,val/dfl_loss,float,False,0.00545,"measurements (raw key, value and explicit unit)"
+reports/official/yolo26s-v8.4.0/saved_metrics.json,fitness,float,False,0.49452,"measurements (raw key, value and explicit unit)"
+reports/official/yolo26s-v8.4.0/checkpoint_metadata.json,git.root,str,False,"""/home/lq/codes/ultralytics""",sources.evidence_json / metadata_json
+reports/official/yolo26s-v8.4.0/checkpoint_metadata.json,git.branch,NoneType,True,null,sources.evidence_json / metadata_json
+reports/official/yolo26s-v8.4.0/checkpoint_metadata.json,git.commit,str,False,"""557e95b99c24c5b0d4eb5973d5d54a20a799566a""",sources.evidence_json / metadata_json
+reports/official/yolo26s-v8.4.0/checkpoint_metadata.json,git.origin,str,False,"""https://github.com/ultralytics/ultralytics.git""",sources.evidence_json / metadata_json
+reports/official/yolo26s-v8.4.0/checkpoint_metadata.json,date,str,False,"""2026-01-05T19:02:41.086829""",sources.evidence_json / metadata_json
+reports/official/yolo26s-v8.4.0/checkpoint_metadata.json,version,str,False,"""8.3.222""",sources.evidence_json / metadata_json
+reports/official/yolo26s-v8.4.0/checkpoint_metadata.json,epoch,int,False,-1,sources.evidence_json / metadata_json
+reports/official/yolo26s-v8.4.0/checkpoint_metadata.json,license,str,False,"""AGPL-3.0 (https://ultralytics.com/license)""",sources.evidence_json / metadata_json
