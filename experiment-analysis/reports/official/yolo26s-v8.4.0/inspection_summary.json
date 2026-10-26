@@ -1,0 +1,30 @@
+{
+  "asset": "yolo26s.pt",
+  "release": "v8.4.0",
+  "training_config_fields": 113,
+  "saved_metric_fields": 11,
+  "curve_rows": 70,
+  "curve_columns": [
+    "epoch",
+    "time",
+    "train/box_loss",
+    "train/cls_loss",
+    "train/dfl_loss",
+    "metrics/precision(B)",
+    "metrics/recall(B)",
+    "metrics/mAP50(B)",
+    "metrics/mAP50-95(B)",
+    "metrics/mAP_small(B)",
+    "metrics/mAP_medium(B)",
+    "metrics/mAP_large(B)",
+    "val/box_loss",
+    "val/cls_loss",
+    "val/dfl_loss",
+    "lr/pg0",
+    "lr/pg1",
+    "lr/pg2",
+    "lr/pg3"
+  ],
+  "saved_checkpoint_epoch": -1,
+  "note": "Preserved publisher values; best checkpoint and final curve row are not assumed identical"
+}

@@ -24,6 +24,14 @@ RELEASE = "v8.4.0"
 ASSET = "yolo26n.pt"
 EXPECTED_SIZE = 5544453
 EXPECTED_SHA256 = "9b09cc8bf347f0fc8a5f7657480587f25db09b34bf33b0652110fb03a8ad4fef"
+ARTIFACTS = {
+    "yolo26n.pt": {"size": EXPECTED_SIZE, "sha256": EXPECTED_SHA256, "id": 340096055},
+    "yolo26s.pt": {
+        "size": 20422725,
+        "sha256": "646f8bc3fe0a656803d95c294f7852321748cb29d13466a1af8862e2db384a1b",
+        "id": 340096060,
+    },
+}
 RELEASE_API = f"https://api.github.com/repos/ultralytics/assets/releases/tags/{RELEASE}"
 DOWNLOAD_URL = f"https://github.com/ultralytics/assets/releases/download/{RELEASE}/{ASSET}"
 DOC_URL = "https://docs.ultralytics.com/guides/yolo26-training-recipe/"
@@ -109,36 +117,39 @@ def request_json(url):
         return json.load(response)
 
 
-def verify_artifact(path):
-    if path.stat().st_size != EXPECTED_SIZE:
+def verify_artifact(path, asset_name=ASSET):
+    expected = ARTIFACTS[asset_name]
+    if path.stat().st_size != expected["size"]:
         raise ValueError("Artifact size differs from pinned official asset")
     digest = hashlib.sha256(path.read_bytes()).hexdigest()
-    if digest != EXPECTED_SHA256:
+    if digest != expected["sha256"]:
         raise ValueError("Artifact SHA-256 differs from pinned official asset")
     return digest
 
 
-def download_artifact(destination, release):
-    assets = [item for item in release["assets"] if item["name"] == ASSET]
+def download_artifact(destination, release, asset_name=ASSET):
+    expected = ARTIFACTS[asset_name]
+    download_url = f"https://github.com/ultralytics/assets/releases/download/{RELEASE}/{asset_name}"
+    assets = [item for item in release["assets"] if item["name"] == asset_name]
     if len(assets) != 1 or release["tag_name"] != RELEASE:
         raise ValueError("Official release asset not uniquely identified")
     asset = assets[0]
-    if (asset["size"] != EXPECTED_SIZE or asset.get("digest") != "sha256:" + EXPECTED_SHA256
-            or asset["browser_download_url"] != DOWNLOAD_URL):
+    if (asset["size"] != expected["size"] or asset.get("digest") != "sha256:" + expected["sha256"]
+            or asset["browser_download_url"] != download_url or asset["id"] != expected["id"]):
         raise ValueError("Release metadata no longer matches pinned values; review before proceeding")
     if destination.exists():
         raise FileExistsError("Refusing to reuse a previous local checkpoint for this first acquisition")
     destination.parent.mkdir(parents=True, exist_ok=True)
     partial = destination.with_suffix(".pt.download")
-    request = urllib.request.Request(DOWNLOAD_URL, headers={"User-Agent": "dirt-detection-lab-official-source-audit"})
+    request = urllib.request.Request(download_url, headers={"User-Agent": "dirt-detection-lab-official-source-audit"})
     with urllib.request.urlopen(request, timeout=60) as response, partial.open("xb") as output:
         total = 0
         while chunk := response.read(1024 * 1024):
             total += len(chunk)
-            if total > EXPECTED_SIZE:
+            if total > expected["size"]:
                 raise ValueError("Download exceeds expected size; partial retained for inspection")
             output.write(chunk)
-    verify_artifact(partial)
+    verify_artifact(partial, asset_name)
     partial.rename(destination)
     return asset
 
@@ -149,13 +160,13 @@ def write_json(path, document):
         stream.write("\n")
 
 
-def run(output_dir, artifact):
+def run(output_dir, artifact, asset_name=ASSET):
     if output_dir.exists():
         raise FileExistsError("Output directory already exists; choose a new destination")
     if artifact.exists() or artifact.with_suffix(".pt.download").exists():
         raise FileExistsError("Acquisition destination already exists; no files overwritten")
     release = request_json(RELEASE_API)
-    asset = download_artifact(artifact, release)
+    asset = download_artifact(artifact, release, asset_name)
     metadata = checkpoint_metadata(artifact)
     columns, rows = curve_rows(metadata["train_results"])
     output_dir.mkdir(parents=True)
@@ -166,12 +177,12 @@ def run(output_dir, artifact):
         "release_url": release["html_url"],
         "release_api": RELEASE_API,
         "release_published_at": release["published_at"],
-        "asset_name": ASSET,
+        "asset_name": asset_name,
         "asset_id": asset["id"],
         "asset_updated_at": asset["updated_at"],
-        "download_url": DOWNLOAD_URL,
+        "download_url": asset["browser_download_url"],
         "size_bytes": artifact.stat().st_size,
-        "sha256": verify_artifact(artifact),
+        "sha256": verify_artifact(artifact, asset_name),
         "checksum_matches_official_digest": True,
         "retrieved_at_utc": datetime.now(timezone.utc).isoformat(),
         "documentation_url": DOC_URL,
@@ -192,7 +203,7 @@ def run(output_dir, artifact):
         writer.writeheader()
         writer.writerows(rows)
     summary = {
-        "asset": ASSET,
+        "asset": asset_name,
         "release": RELEASE,
         "training_config_fields": len(metadata["train_args"]),
         "saved_metric_fields": len(metadata["train_metrics"]),
@@ -207,11 +218,14 @@ def run(output_dir, artifact):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--output", type=Path, default=MODULE_ROOT / "reports" / "official" / "yolo26n-v8.4.0")
-    parser.add_argument("--artifact", type=Path, default=MODULE_ROOT / "data" / "external" / "ultralytics" / RELEASE / ASSET)
+    parser.add_argument("--model", choices=sorted(ARTIFACTS), default=ASSET)
+    parser.add_argument("--output", type=Path)
+    parser.add_argument("--artifact", type=Path)
     args = parser.parse_args()
     try:
-        print(json.dumps(run(args.output.resolve(), args.artifact.resolve()), indent=2, ensure_ascii=False))
+        output = args.output or MODULE_ROOT / "reports" / "official" / f"{Path(args.model).stem}-{RELEASE}"
+        artifact = args.artifact or MODULE_ROOT / "data" / "external" / "ultralytics" / RELEASE / args.model
+        print(json.dumps(run(output.resolve(), artifact.resolve(), args.model), indent=2, ensure_ascii=False))
     except (OSError, ValueError, KeyError, pickle.UnpicklingError, zipfile.BadZipFile) as exc:
         parser.exit(1, f"Official checkpoint inspection failed: {exc}\n")
 

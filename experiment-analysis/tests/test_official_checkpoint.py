@@ -64,6 +64,24 @@ class OfficialCheckpointTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 MODULE.verify_artifact(path)
 
+    def test_official_variants_have_distinct_pins(self):
+        nano = MODULE.ARTIFACTS["yolo26n.pt"]
+        small = MODULE.ARTIFACTS["yolo26s.pt"]
+        self.assertNotEqual(nano["sha256"], small["sha256"])
+        self.assertEqual(small["size"], 20422725)
+        self.assertEqual(small["id"], 340096060)
+
+    def test_wrong_small_release_metadata_is_rejected_before_download(self):
+        release = {"tag_name": MODULE.RELEASE, "assets": [{
+            "name": "yolo26s.pt", "size": 0, "id": 340096060,
+            "digest": "wrong", "browser_download_url": "https://example.invalid/model.pt",
+        }]}
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "yolo26s.pt"
+            with self.assertRaises(ValueError):
+                MODULE.download_artifact(path, release, "yolo26s.pt")
+            self.assertFalse(path.exists())
+
 
 if __name__ == "__main__":
     unittest.main()
